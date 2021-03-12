@@ -1,13 +1,12 @@
 import './header.css';
-import images from '../../assets/images/index';
+import images from '../../assets/images';
 
-const header = () => {
-  return (
+const Header = () =>
     <header className="header">
         <div className="logo">
             <img 
                 className="logo-img"
-                src={images.logo.default}
+                src={images.logo}
                 alt="logo"
             />
         </div>
@@ -25,7 +24,5 @@ const header = () => {
             <b>Log In</b> or <b>Sign Up</b>
         </div>
     </header>
-  );
-}
 
-export default header;
+export default Header;

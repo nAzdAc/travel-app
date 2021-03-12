@@ -1,11 +1,10 @@
-import './main.css';
-import CountryInfo from '../countryInfo/countryInfo';
-import data from '../../data';
+import './content.css';
+import CountryInfo from '../../../CountryInfo/CountryInfo';
+import data from '../../../../data';
 
 const france = data.find(c => c.country === 'France');
 
-const main = () => {
-  return (
+const Content = () => 
     <main className="main">
         <h1 className="main-title">
             Find your country
@@ -27,7 +26,5 @@ const main = () => {
             </div>
         </div>
     </main>
-  );
-}
 
-export default main;
+export default Content;

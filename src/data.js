@@ -4,20 +4,20 @@ const countries = [
     {
         country: 'France',
         capital: 'Paris',
-        countryImg: images.paris.default,
-        countryFlag: images.flagFrance.default,
+        countryImg: images.paris,
+        countryFlag: images.flagFrance,
     },
     {
         country: 'England',
         capital: 'London',
-        countryImg: images.paris.default,
-        countryFlag: images.flagFrance.default,
+        countryImg: images.paris,
+        countryFlag: images.flagFrance,
     },
     {
         country: 'Norway',
         capital: 'Oslo',
-        countryImg: images.paris.default,
-        countryFlag: images.flagFrance.default,
+        countryImg: images.paris,
+        countryFlag: images.flagFrance,
     }
 ];
 
