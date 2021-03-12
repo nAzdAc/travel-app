@@ -1,6 +1,25 @@
 import './footer.css';
 import images from '../../assets/images/index';
 
+const gitAccounts = [
+    {
+        name: 'AGoravskiy',
+        url: 'https://github.com/AGoravskiy',
+    },
+    {
+        name: 'nAzdAc',
+        url: 'https://github.com/nAzdAc',
+    },
+    {
+        name: 'Nickolay-Kr',
+        url: 'https://github.com/Nicolay-kr',
+    },
+    {
+        name: 'ShvetsBy',
+        url: 'https://github.com/ShvetsBy',
+    },
+];
+
 const Footer = () => 
     <footer className="footer">
         <div className="rs">
@@ -22,38 +41,18 @@ const Footer = () =>
             2021
         </p>
         <div className="developers">
-            <a 
-                className="github"
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://github.com/AGoravskiy"
-            >
-                AGoravskiy
-            </a>
-            <a
-                className="github"
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://github.com/nAzdAc"
-            >
-                nAzdAc
-            </a>
-            <a 
-                className="github"
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://github.com/Nicolay-kr"
-            >
-                Nickolay-Kr
-            </a>
-            <a
-                className="github"
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://github.com/ShvetsBy"
-            >
-                ShvetsBy
-            </a>
+            {
+                gitAccounts.map(acc => 
+                    <a 
+                        className="github"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href={acc.url}
+                    >
+                        {acc.name}
+                    </a>
+                )
+            }
         </div>
     </footer>
 
