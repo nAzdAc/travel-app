@@ -7,8 +7,11 @@ import {
   Hits,
   SearchBox,
   Pagination,
+  Configure,
 } from 'react-instantsearch-dom';
 import PropTypes from 'prop-types';
+import 'instantsearch.css/themes/reset.css';
+import 'instantsearch.css/themes/satellite.css';
 
 const searchClient = algoliasearch('YIT6C1K5J5', '93905f6f171e09927bb50b998b8141a5');
 
@@ -28,6 +31,7 @@ const Header = () =>
                     <SearchBox
                         autoFocus
                         showLoadingIndicator
+                        submit={<img src={images.search} alt="search-icon"/>}
                         className="searchbox"
                         translations={{
                         placeholder: 'type something',
@@ -49,20 +53,18 @@ const Header = () =>
 
         <div className="container"> 
             <div className="search-panel__results">
-            <Hits hitComponent={Hit} />
-            <div className="pagination">
-                <Pagination />
-            </div>
+                <Configure hitsPerPage={8} />
+                <Hits hitComponent={Hit} />
+                <div className="pagination">
+                    <Pagination />
+                </div>
             </div> 
         </div>
     </InstantSearch>
 function Hit(props) {
     return (
         <article>
-        <p>
         {props.hit.name}
-            {/* <code>{JSON.stringify(props.hit.firstname).slice(0, 100)}...</code> */}
-        </p>
         </article>
     );
 }
