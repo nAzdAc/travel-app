@@ -1,11 +1,11 @@
-import Header from '../../Header/Header';
+import Header from '../../header/header';
 import Content from './Content/Content';
-import Footer from '../../Footer/Footer';
+import Footer from '../../footer/footer';
 
 const Main = () => 
     <div className="Main">
       <Header/>
-      <Content/>
+      {/* <Content/> */}
       <Footer/>
     </div>
 

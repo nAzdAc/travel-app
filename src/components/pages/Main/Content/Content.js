@@ -1,5 +1,5 @@
 import './content.css';
-import CountryInfo from '../../../CountryInfo/CountryInfo';
+import CountryInfo from '../../../countryInfo/countryInfo';
 import data from '../../../../data';
 
 const france = data.find(c => c.country === 'France');
