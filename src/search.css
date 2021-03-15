@@ -1,0 +1,294 @@
+.ais-Breadcrumb-list,
+.ais-CurrentRefinements-list,
+.ais-HierarchicalMenu-list,
+.ais-Hits-list,
+.ais-Results-list,
+.ais-InfiniteHits-list,
+.ais-InfiniteResults-list,
+.ais-Menu-list,
+.ais-NumericMenu-list,
+.ais-Pagination-list,
+.ais-RatingMenu-list,
+.ais-RefinementList-list,
+.ais-ToggleRefinement-list {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+
+.ais-ClearRefinements-button,
+.ais-CurrentRefinements-delete,
+.ais-CurrentRefinements-reset,
+.ais-GeoSearch-redo,
+.ais-GeoSearch-reset,
+.ais-HierarchicalMenu-showMore,
+.ais-InfiniteHits-loadPrevious,
+.ais-InfiniteHits-loadMore,
+.ais-InfiniteResults-loadMore,
+.ais-Menu-showMore,
+.ais-RangeInput-submit,
+.ais-RefinementList-showMore,
+.ais-SearchBox-submit,
+.ais-SearchBox-reset,
+.ais-VoiceSearch-button {
+  padding: 0;
+  overflow: visible;
+  font: inherit;
+  line-height: normal;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+  .ais-ClearRefinements-button::-moz-focus-inner,
+  .ais-CurrentRefinements-delete::-moz-focus-inner,
+  .ais-CurrentRefinements-reset::-moz-focus-inner,
+  .ais-GeoSearch-redo::-moz-focus-inner,
+  .ais-GeoSearch-reset::-moz-focus-inner,
+  .ais-HierarchicalMenu-showMore::-moz-focus-inner,
+  .ais-InfiniteHits-loadPrevious::-moz-focus-inner,
+  .ais-InfiniteHits-loadMore::-moz-focus-inner,
+  .ais-InfiniteResults-loadMore::-moz-focus-inner,
+  .ais-Menu-showMore::-moz-focus-inner,
+  .ais-RangeInput-submit::-moz-focus-inner,
+  .ais-RefinementList-showMore::-moz-focus-inner,
+  .ais-SearchBox-submit::-moz-focus-inner,
+  .ais-SearchBox-reset::-moz-focus-inner,
+  .ais-VoiceSearch-button::-moz-focus-inner {
+    padding: 0;
+    border: 0; }
+  .ais-ClearRefinements-button[disabled],
+  .ais-CurrentRefinements-delete[disabled],
+  .ais-CurrentRefinements-reset[disabled],
+  .ais-GeoSearch-redo[disabled],
+  .ais-GeoSearch-reset[disabled],
+  .ais-HierarchicalMenu-showMore[disabled],
+  .ais-InfiniteHits-loadPrevious[disabled],
+  .ais-InfiniteHits-loadMore[disabled],
+  .ais-InfiniteResults-loadMore[disabled],
+  .ais-Menu-showMore[disabled],
+  .ais-RangeInput-submit[disabled],
+  .ais-RefinementList-showMore[disabled],
+  .ais-SearchBox-submit[disabled],
+  .ais-SearchBox-reset[disabled],
+  .ais-VoiceSearch-button[disabled] {
+    cursor: default; }
+
+.ais-Breadcrumb-list,
+.ais-Breadcrumb-item,
+.ais-Pagination-list,
+.ais-RangeInput-form,
+.ais-RatingMenu-link,
+.ais-PoweredBy {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center; }
+
+.ais-GeoSearch,
+.ais-GeoSearch-map {
+  height: 100%; }
+
+.ais-HierarchicalMenu-list .ais-HierarchicalMenu-list {
+  margin-left: 1em; }
+
+.ais-PoweredBy-logo {
+  display: block;
+  height: 1.2em;
+  width: auto; }
+
+.ais-RatingMenu-starIcon {
+  display: block;
+  width: 20px;
+  height: 20px; }
+
+.ais-SearchBox-input::-ms-clear, .ais-SearchBox-input::-ms-reveal {
+  display: none;
+  width: 0;
+  height: 0; }
+
+.ais-SearchBox-input::-webkit-search-decoration, .ais-SearchBox-input::-webkit-search-cancel-button, .ais-SearchBox-input::-webkit-search-results-button, .ais-SearchBox-input::-webkit-search-results-decoration {
+  display: none; }
+
+.ais-RangeSlider .rheostat {
+  overflow: visible;
+  margin-top: 40px;
+  margin-bottom: 40px; }
+
+.ais-RangeSlider .rheostat-background {
+  height: 6px;
+  top: 0px;
+  width: 100%; }
+
+.ais-RangeSlider .rheostat-handle {
+  margin-left: -12px;
+  top: -7px; }
+
+.ais-RangeSlider .rheostat-background {
+  position: relative;
+  background-color: #ffffff;
+  border: 1px solid #aaa; }
+
+.ais-RangeSlider .rheostat-progress {
+  position: absolute;
+  top: 1px;
+  height: 4px;
+  background-color: #333; }
+
+.rheostat-handle {
+  position: relative;
+  z-index: 1;
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  border: 1px solid #333;
+  border-radius: 50%;
+  cursor: -webkit-grab;
+  cursor: grab; }
+
+.rheostat-marker {
+  margin-left: -1px;
+  position: absolute;
+  width: 1px;
+  height: 5px;
+  background-color: #aaa; }
+
+.rheostat-marker--large {
+  height: 9px; }
+
+.rheostat-value {
+  margin-left: 50%;
+  padding-top: 15px;
+  position: absolute;
+  text-align: center;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%); }
+
+.rheostat-tooltip {
+  margin-left: 50%;
+  position: absolute;
+  top: -22px;
+  text-align: center;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%); }
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;}
+.search{
+  border-radius: 5px;}
+
+
+.search-panel {
+  display: flex;
+  border-radius:5px;}
+
+.search-panel__filters {
+  flex: 1;}
+
+.search-panel__results {
+  flex: 3;}
+
+.searchbox {
+  margin-bottom: 2rem;
+  border-radius: 5px;}
+
+.pagination {
+  display: flex;
+  margin: 2rem auto;
+  text-align: center;
+  justify-content: center;}
+.ais-SearchBox-submit {
+display: block;}
+
+[class^='ais-'] {
+  box-sizing: border-box;
+}
+.ais-Hits-item, .ais-InfiniteHits-item {
+  align-items: center;
+  background: #fff;
+  box-shadow: 0 0 0 1px rgb(35 38 59 / 5%), 0 1px 3px 0 rgb(35 38 59 / 15%);
+  display: flex;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.25rem;
+  padding: 1.5rem;
+}
+.ais-Breadcrumb-list, .ais-Breadcrumb-item, .ais-Pagination-list, .ais-RangeInput-form, .ais-RatingMenu-link, .ais-PoweredBy {
+    display: flex;
+    align-items: center;
+}
+.ais-HierarchicalMenu-showMore, .ais-Menu-showMore, .ais-RefinementList-showMore, .ais-ClearRefinements-button, .ais-InfiniteHits-loadMore, .ais-RangeInput-submit, .ais-InfiniteHits-loadPrevious, .ais-Pagination-link, .ais-GeoSearch-redo, .ais-GeoSearch-reset, .ais-VoiceSearch-button {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  background-image: linear-gradient(
+-180deg
+, #fff, #fcfcfd);
+  border: 1px solid #d6d6e7;
+  border-radius: 3px;
+  box-shadow: 0 1px 0 0 rgb(35 38 59 / 5%);
+  color: #23263b;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 0.875rem;
+  font-weight: 400;
+  height: 2rem;
+  justify-content: center;
+  line-height: 1.25rem;
+  padding: 0 1rem;
+  place-items: center;
+  text-decoration: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.ais-HierarchicalMenu-showMore:active, .ais-Menu-showMore:active, .ais-RefinementList-showMore:active, .ais-ClearRefinements-button:active, .ais-InfiniteHits-loadMore:active, .ais-InfiniteHits-loadPrevious:active, .ais-Pagination-item--selected .ais-Pagination-link, .ais-Pagination-link:active, .ais-GeoSearch-redo:active, .ais-GeoSearch-reset:active, .ais-VoiceSearch-button:active {
+  border-color: #d6d6e7;
+  box-shadow: rgb(119 122 175 / 40%) 0 1px 4px 0 inset, rgb(119 122 175 / 40%) 0 1px 1px 0 inset, rgb(35 38 59 / 5%) 0 1px 0 0;
+}
+.ais-Pagination-item--selected .ais-Pagination-link {
+  font-weight: bold;
+}
+.ais-SearchBox-form{
+  display:flex;
+  height: 40px;
+  width: 400px;
+}
+input[type=search]:not(.browser-default){
+  background-color: transparent;
+  border: 1px solid #C4C4C4;
+  border-radius: 0;
+  outline: none;
+  height: 100%;
+  width: 100%;
+  font-size: 16px;
+  margin: 0 0 8px 0;
+  padding: 10px;
+  box-shadow: none;
+  box-sizing: border-box;
+  transition: box-shadow .3s, border .3s;
+}
+input[type=search]:not(.browser-default):focus:not([readonly]){
+  border: 1px solid #26a69a;
+  box-shadow: 0 0 0 ;
+}
+.ais-SearchBox-submit {
+  height:100%;
+  width:40px;
+  display: block;
+  background-color: #FF6B35;
+  border: 1px solid #C4C4C4;
+
+}
+.ais-SearchBox-submitIcon{
+  color:white;
+}
+.ais-SearchBox-reset{
+  position:relative;
+  left:-60px;
+}
