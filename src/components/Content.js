@@ -1,14 +1,15 @@
 import data from '../data';
 import { CountryInfo } from './CountryInfo';
+import { H1 } from './H1'
+import { ImageLarge } from './ImgLarge';
 
 const france = data.find((c) => c.country === 'France');
+const title = 'Find your country';
 
 const Content = () => (
 	<main className="main">
-		<h1 className="main-title">Find your country</h1>
-		<div className="main__img_big__wrapper">
-			<img className="img_big" src={france.countryImg} alt="paris" />
-		</div>
+		<H1 text={title}></H1>
+		<ImageLarge url={france.countryImg}/>
 		<CountryInfo countryFlag={france.countryFlag} country={france.country} capital={france.capital} />
 		<div className="card__medium__wrapper">
 			<div className="card__medium" />
