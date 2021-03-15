@@ -8,10 +8,13 @@
     "@testing-library/user-event": "^12.8.3",
     "algoliasearch": "^4.8.6",
     "instantsearch.css": "^7.4.5",
+    "react-instantsearch-dom": "^6.10.3",
+    "materialize-css": "^1.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-instantsearch-dom": "^6.10.3",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "styled-components": "^5.2.1",
     "web-vitals": "^1.1.0"
   },
   "scripts": {
