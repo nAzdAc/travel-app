@@ -1,4 +1,5 @@
 import './header.css';
+import './search.css';
 import images from '../../assets/images';
 import React from 'react';
 import algoliasearch from 'algoliasearch';
@@ -10,8 +11,8 @@ import {
   Configure,
 } from 'react-instantsearch-dom';
 import PropTypes from 'prop-types';
-import 'instantsearch.css/themes/reset.css';
-import 'instantsearch.css/themes/satellite.css';
+// import 'instantsearch.css/themes/reset.css';
+// import 'instantsearch.css/themes/satellite.css';
 
 const searchClient = algoliasearch('YIT6C1K5J5', '93905f6f171e09927bb50b998b8141a5');
 
@@ -31,10 +32,10 @@ const Header = () =>
                     <SearchBox
                         autoFocus
                         showLoadingIndicator
-                        submit={<img src={images.search} alt="search-icon"/>}
-                        className="searchbox"
+                        // submit={<img src={images.search} alt="search-icon"/>}
+                        // className="searchbox"
                         translations={{
-                        placeholder: 'type something',
+                        placeholder: 'search...',
                         }}
                     />
                 </div>
