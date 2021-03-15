@@ -6,7 +6,7 @@ export const Main = () => {
 	return (
 		<div className="Main">
 			<Header />
-			<Content />
+			{/* <Content /> */}
 			<Footer />
 		</div>
 	);
