@@ -1,4 +1,4 @@
-import React, { useContext} from 'react';
+import React, { useContext } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import images from '../assets/images';
 import { AuthContext } from '../context/AuthContext';
@@ -21,10 +21,10 @@ export const Header = () => {
 	const auth = useContext(AuthContext);
 
 	function logoutHandler(event) {
-		console.log('click logout')
-		event.preventDefault();
-		auth.logout();
-		history.push();
+
+		// event.preventDefault();
+		// auth.logout();
+		// history.push();
 	}
 	return (
 		<InstantSearch searchClient={searchClient} indexName="countries">
