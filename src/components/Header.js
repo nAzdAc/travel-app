@@ -8,10 +8,10 @@ export const Header = () => {
 	const auth = useContext(AuthContext);
 
 	function logoutHandler(event) {
-
-		// event.preventDefault();
-		// auth.logout();
-		// history.push();
+		console.log('click logout')
+		event.preventDefault();
+		auth.logout();
+		history.push();
 	}
 	return (
 		<header className="header">

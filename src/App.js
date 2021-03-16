@@ -1,21 +1,34 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { Main } from './pages/Main';
-import { Country } from './pages/Country';
+import { BrowserRouter } from 'react-router-dom';
+import { AuthContext } from './context/AuthContext';
+import { useAuth } from './hooks/auth.hook';
+import { Loader } from './components/Loader';
+import { useRoutes } from './hooks/routes.hook';
 import 'materialize-css';
-import { AuthPage } from './pages/AuthPage';
 
 function App() {
+	const { token, login, logout, userId, ready } = useAuth();
+	const isAuthenticated = !!token;
+	const routes = useRoutes(isAuthenticated);
+
+	if (!ready) {
+		return <Loader />;
+	}
+
 	return (
-		<BrowserRouter>
-			<div className="app">
-				<Switch>
-					<Route path={'/'} exact component={AuthPage} />
-					<Route path={'/main'} component={Main} />
-          <Route path={'/country'} component={() => <Country name="Italy"/>} />
-				</Switch>
-			</div>
-		</BrowserRouter>
+		<AuthContext.Provider
+			value={{
+				token,
+				login,
+				logout,
+				userId,
+				isAuthenticated
+			}}
+		>
+			<BrowserRouter>
+				<div className="app">{routes}</div>
+			</BrowserRouter>
+		</AuthContext.Provider>
 	);
 }
 
