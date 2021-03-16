@@ -292,3 +292,43 @@ input[type=search]:not(.browser-default):focus:not([readonly]){
   position:relative;
   left:-60px;
 }
+.ais-Hits-item{
+  width:360px;
+  /* height:280px; */
+}
+.ais-Hits-list{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap: 2rem;
+  width:100%;
+}
+.country-link{
+  display:flex;
+  flex-wrap:wrap;
+  gap:20px;
+  width:100%;
+  height:100%;
+}
+.country-flag{
+  width:32px;
+  height:24px;
+}
+.country-title{
+  margin-left:20px;
+  font-family: Arsenal;
+  font-size: 24px;
+  font-style: italic;
+  font-weight: 700;
+  line-height: 30px;
+  text-align: left;
+  color:black;
+}
+.country-img{
+  width:100%;
+  height:190px;
+  border:1px solid;
+}
+.container {
+  width: 100%;
+}
