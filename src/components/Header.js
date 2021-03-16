@@ -12,7 +12,7 @@ import {
   Configure,
 } from 'react-instantsearch-dom';
 import PropTypes from 'prop-types';
-let count = 0;
+import { useHttp } from '../hooks/http.hook';
 
 const searchClient = algoliasearch('YIT6C1K5J5', '93905f6f171e09927bb50b998b8141a5');
 
@@ -135,8 +135,6 @@ function apiGet(method, query) {
 		if (query !== undefined) {
 			otmAPI += "&" + query;
 		}
-		count += 1;
-		console.log(count)
 		fetch(otmAPI)
 			.then(response => response.json())
 			.then(data => resolve(data))
