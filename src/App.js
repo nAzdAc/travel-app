@@ -1,7 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Switch } from 'react-router-dom';
-import { Main } from './pages/MainPage';
-import { AuthPage } from './pages/AuthPage';
+import { BrowserRouter } from 'react-router-dom';
 import { AuthContext } from './context/AuthContext';
 import { useAuth } from './hooks/auth.hook';
 import { Loader } from './components/Loader';
@@ -30,8 +28,6 @@ function App() {
 			<BrowserRouter>
 				<div className="app">{routes}</div>
 			</BrowserRouter>
-			
-				
 		</AuthContext.Provider>
 	);
 }
