@@ -6,5 +6,5 @@ export const routes = {
 	register: getRoute('register'),
 	login: getRoute('login'),
 	rating: getRoute('rating'),
-	country: getRoute('/country')
+	country: getRoute('country')
 };
