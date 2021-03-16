@@ -1,9 +1,9 @@
 import data from '../data';
 import { CountryInfo } from './CountryInfo';
 import { H1 } from './H1'
-import { ImageLarge } from './ImgLarge';
+import { ImageLarge } from './ImageLarge';
 
-const france = data.find((c) => c.country === 'France');
+const france = data.find((c) => c.name === 'France');
 const title = 'Find your country';
 
 const Content = () => (
