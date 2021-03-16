@@ -1,13 +1,12 @@
 import React, { useEffect, useState, useCallback, useContext } from 'react';
 import styled from 'styled-components';
 import { Footer } from '../components/Footer';
-import { Header } from '../components/Header';
+import { HeaderCountry } from '../components/HeaderCountry';
 import { ImageLarge } from '../components/ImageLarge';
 import { H1 } from '../components/H1';
 import { TextMedium } from '../components/TextMedium';
 import { TextColor } from '../components/TextColor';
 import data from '../data';
-import axios from 'axios';
 import { AuthContext } from '../context/AuthContext';
 import { useHttp } from '../hooks/http.hook';
 import { routes } from '../utils/routes';
@@ -54,7 +53,6 @@ export const CountryPage = ({ name }) => {
 				const data = await request(`${routes.country}?country=${countryData.name}&capital=${countryData.capital}&currencyCode=${countryData.currency}`, 'GET', null, {
 					Authorization: `Bearer ${token}`
 				});
-				console.log(data.weather)
 				setCountryWeather(data.weather);
         setCountryRate(data.currency);
 			} catch (e) {}
@@ -68,7 +66,7 @@ export const CountryPage = ({ name }) => {
 
 	return (
 		<CountryStyled>
-			<Header />
+			<HeaderCountry />
 			<ImageLarge url={countryData.imageUrl} />
 			<RatingWrapperStyled>
 				<H1 text={countryTitle} />
