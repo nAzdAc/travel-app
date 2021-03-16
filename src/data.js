@@ -15,7 +15,7 @@ const countries = [
     },
       imageUrl: "https://www.atlanticcouncil.org/wp-content/uploads/2020/09/Rome-coroavirus-large-1024x683.jpg",
       videoUrl: "https://youtu.be/FlRwssZYRM0",
-      currency: "EUR",
+      currency: "BYN",
       ISOCode: "IT",
     },
     {

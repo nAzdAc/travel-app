@@ -61,7 +61,7 @@ export const CountryPage = ({ name }) => {
 		async () => {
       console.log('feactWeather')
 			try {
-				const data = await request(`http://localhost:8080/country?country=${countryData.name}&capital=${countryData.capital}`, 'GET', null, {
+				const data = await request(`http://localhost:8080/country?country=${countryData.name}&capital=${countryData.capital}&currencyCode=${countryData.currency}`, 'GET', null, {
 					Authorization: `Bearer ${token}`
 				});
 				console.log(data)
