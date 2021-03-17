@@ -14,7 +14,6 @@ import {
 import PropTypes from 'prop-types';
 import { useHttp } from '../hooks/http.hook';
 import {
-	Link,
   useParams
 } from "react-router-dom";
 
@@ -115,13 +114,13 @@ function Hit(props) {
 			//  useEffect( () => {fetchData()},[]);
 
     return (
-        <Link to={`/country/${spaceToUnderscore(props.hit.name)}`}>
+        <NavLink to={`/country/${spaceToUnderscore(props.hit.name)}`}>
 					<img src={props.hit.flag} className="country-img"></img>
 					<div className="country">
 						<span><img className="country-flag" src={props.hit.flag}></img></span>
 						<span className="country-title">{props.hit.name}, {props.hit.capital}</span>
 					</div>
-        </Link>
+        </NavLink>
     );
 }
   
@@ -159,6 +158,9 @@ const spaceToUnderscore = (expresion) =>{
 			}
 			newExprestion += char
 		}
+		return newExprestion
+	}else{
+		return expresion
 	}
-	return newExprestion
+	
 }

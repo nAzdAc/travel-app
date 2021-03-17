@@ -12,7 +12,7 @@ export const useRoutes = (isAuthenticated) => {
 					<MainPage />
 				</Route>
 				<Route path="/country/:name">
-					<CountryPage/>
+					<CountryPage />
 				</Route>
 				<Redirect to="/main" />
 			</Switch>

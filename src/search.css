@@ -296,6 +296,10 @@ input[type=search]:not(.browser-default):focus:not([readonly]){
   width:360px;
   /* height:280px; */
 }
+.ais-Hits-item:hover{
+  opacity: 0.5;
+  
+}
 .ais-Hits-list{
   display:flex;
   flex-wrap:wrap;
