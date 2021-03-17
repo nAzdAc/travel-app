@@ -5,18 +5,12 @@ import { AuthContext } from '../context/AuthContext';
 // import { lang } from '../const/lang';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeLang } from '../store/langslice';
+import { langs } from '../const/langs';
+import { SelectLang } from './select';
 
 export const Header = () => {
   const history = useHistory();
   const auth = useContext(AuthContext);
-
-  const lang = useSelector((state) => state.lang.value);
-  const dispatch = useDispatch();
-
-  const onChange = (e) => {
-    dispatch(changeLang(e.target.value));
-    console.log(e.target.value);
-  };
 
   function logoutHandler(event) {
     console.log('click logout');
@@ -31,15 +25,18 @@ export const Header = () => {
       </div>
       <div className="search">search</div>
       <div className="language">
-        <select onChange={onChange}>
-          <option value="en">EN</option>
-          <option value="fr">FR</option>
-          <option value="ru">RU</option>
-        </select>
+        <SelectLang />
+        {/* <select onChange={onChange}> */}
+        {/* <option value="en">EN</option>
+        <option value="fr">FR</option>
+        <option value="ru">RU</option> */}
+        {/* {Object.values(langs).map((lang) =>
+          {<option value={lang}>{lang.tuUpperCase()}</option>}) */}
+        {/* </select> */}
       </div>
       <div className="authorization">
         <NavLink className="link" to={'/'} onClick={logoutHandler}>
-          Logout
+          Logout translate
           {/* {lang.en.logIn} */}
         </NavLink>
       </div>

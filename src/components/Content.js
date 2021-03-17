@@ -2,10 +2,12 @@ import data from '../data';
 import { CountryInfo } from './CountryInfo';
 import { H1 } from './H1';
 import { ImageLarge } from './ImageLarge';
-import { lang } from '../const/lang';
+import { langs, dictionary } from '../const/langs';
 
 const france = data.find((c) => c.name === 'France');
-const title = lang.en.findYouCountry;
+const title = dictionary[langs.en].findYouCountry;
+
+console.log(dictionary[langs.ru].logIn);
 
 const Content = () => (
   <main className="main">

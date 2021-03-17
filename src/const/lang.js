@@ -1,40 +1,5 @@
-export const lang = {
-  en: {
-    logIn: 'Log In',
-    signUp: 'Sign up',
-    logOut: 'Log Out',
-    findYouCountry: 'Find you country',
-    youMayLike: 'You may also like',
-    wind: 'Wind',
-    perUSD: 'per 1 USD',
-    attractions: 'Attractions',
-    location: 'Location',
-    search: 'Seаrch',
-  },
+import { english } from './english';
+import { russian } from './russian';
+import { french } from './french';
 
-  ru: {
-    logIn: 'Войти',
-    signUp: 'Зарегистрироваться',
-    logOut: 'Выйти',
-    findYouCountry: 'Найдите свою страну',
-    youMayLike: 'Вам моэет понравится',
-    wind: 'Ветер',
-    perUSD: 'за 1 USD',
-    attractions: 'Достопримечательности',
-    location: 'Расположение',
-    search: 'Найти',
-  },
-
-  fr: {
-    logIn: 'Connecter',
-    signUp: 'Inscrire',
-    logOut: 'Déconnecter',
-    findYouCountry: 'Trouver ce que votre pays',
-    youMayLike: 'Vous aimerez aussi',
-    wind: 'Vent',
-    perUSD: 'pour 1 USD',
-    attractions: 'Attraction',
-    location: 'Emplacement',
-    search: 'Recherche',
-  },
-};
+export const lang = [english, russian, french];
