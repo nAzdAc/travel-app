@@ -26,11 +26,6 @@ const AddInfoWrapperStyled = styled.div`
     flex-direction: column;
   }
 `;
-const YMapsStyled = styled.div`
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
-`;
 
 const WeatherWrapperStyled = styled.div`
 	display: flex;
