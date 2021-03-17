@@ -79,7 +79,6 @@ export const Header = () => {
 };
 
 function Hit(props) {
-
   // const [countryImg, setCountryImg] = useState();
 	// const pageLength = 5; // number of objects per page			
 	// let lon ="-15.40669"; // place longitude
@@ -152,13 +151,16 @@ function apiGet(method, query) {
 
 const spaceToUnderscore = (expresion) =>{
 	let newExprestion = ''
-	if (expresion.includes(' ')){;
+	if (expresion.includes(' ')){
 		for (let char of expresion) {
 			if(char === ' '){
 				char = '_'
 			}
 			newExprestion += char
 		}
+		return newExprestion
 	}
-	return newExprestion
+	else{
+		return expresion
+	}
 }
