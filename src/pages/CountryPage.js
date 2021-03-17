@@ -40,7 +40,7 @@ const RateStyled = styled.p`
 export const CountryPage = ({ name }) => {
 	const [ countryWeather, setCountryWeather ] = useState({});
   const [ countryRate, setCountryRate ] = useState({});
-	const { loading, request } = useHttp();
+	const { request } = useHttp();
 	const { token } = useContext(AuthContext)
 
 	const countryData = data.find((c) => c.name === name);
