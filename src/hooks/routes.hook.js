@@ -11,8 +11,8 @@ export const useRoutes = (isAuthenticated) => {
 				<Route path="/main" exact>
 					<MainPage />
 				</Route>
-				<Route path="/country">
-					<CountryPage name="Italy"/>
+				<Route path="/country/:name">
+					<CountryPage/>
 				</Route>
 				<Redirect to="/main" />
 			</Switch>

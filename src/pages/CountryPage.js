@@ -10,10 +10,19 @@ import data from '../data';
 import axios from 'axios';
 import { AuthContext } from '../context/AuthContext';
 import { useHttp } from '../hooks/http.hook';
+import { YMaps,Map } from 'react-yandex-maps';
+import '../../src/map.css';
+import {routes} from '../utils/routes'
+import { useParams } from 'react-router-dom';
 
 const CountryStyled = styled.div``;
 const RatingWrapperStyled = styled.div`display: flex;`;
 const AddInfoWrapperStyled = styled.div`
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+`;
+const YMapsStyled = styled.div`
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
@@ -34,7 +43,8 @@ const getWeatherApi = (cityName) =>
 
 const getWeatherIcon = (name) => `http://openweathermap.org/img/w/${name}.png`;
 
-export const CountryPage = ({ name }) => {
+export const CountryPage = (props) => {
+	const {name} = useParams();
 	const [ countryWeather, setCountryWeather ] = useState({});
 	const { loading, request } = useHttp();
 	const { token } = useContext(AuthContext)
@@ -61,7 +71,7 @@ export const CountryPage = ({ name }) => {
 		async () => {
       console.log('feactWeather')
 			try {
-				const data = await request(`http://localhost:8080/country?country=${countryData.name}&capital=${countryData.capital}`, 'GET', null, {
+				const data = await request(`${routes.country}?country=${countryData.name}&capital=${countryData.capital}`, 'GET', null, {
 					Authorization: `Bearer ${token}`
 				});
 				console.log(data)
@@ -104,6 +114,11 @@ export const CountryPage = ({ name }) => {
 					<TextMedium text={countryData.capital} />
 				</WeatherWrapperStyled>
 			</AddInfoWrapperStyled>
+			<YMaps>
+   			<div className="map-conteiner">
+				 <Map defaultState={{ center: [55.75, 37.57], zoom: 9 }} />
+				</div>
+  		</YMaps>
 			<Footer />
 		</CountryStyled>
 	);

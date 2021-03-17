@@ -13,8 +13,13 @@ import {
 } from 'react-instantsearch-dom';
 import PropTypes from 'prop-types';
 import { useHttp } from '../hooks/http.hook';
+import {
+	Link,
+  useParams
+} from "react-router-dom";
 
 const searchClient = algoliasearch('YIT6C1K5J5', '93905f6f171e09927bb50b998b8141a5');
+
 
 export const Header = () => {
 	const history = useHistory();
@@ -74,6 +79,7 @@ export const Header = () => {
 };
 
 function Hit(props) {
+
   // const [countryImg, setCountryImg] = useState();
 	// const pageLength = 5; // number of objects per page			
 	// let lon ="-15.40669"; // place longitude
@@ -109,13 +115,13 @@ function Hit(props) {
 			//  useEffect( () => {fetchData()},[]);
 
     return (
-        <a className="country-link" href="{props.hit.name}">
+        <Link to={`/country/${spaceToUnderscore(props.hit.name)}`}>
 					<img src={props.hit.flag} className="country-img"></img>
 					<div className="country">
 						<span><img className="country-flag" src={props.hit.flag}></img></span>
 						<span className="country-title">{props.hit.name}, {props.hit.capital}</span>
 					</div>
-        </a>
+        </Link>
     );
 }
   
@@ -144,4 +150,15 @@ function apiGet(method, query) {
 	});
 }
 
-
+const spaceToUnderscore = (expresion) =>{
+	let newExprestion = ''
+	if (expresion.includes(' ')){;
+		for (let char of expresion) {
+			if(char === ' '){
+				char = '_'
+			}
+			newExprestion += char
+		}
+	}
+	return newExprestion
+}
