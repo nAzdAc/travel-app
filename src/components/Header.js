@@ -26,13 +26,6 @@ export const Header = () => {
       <div className="search">search</div>
       <div className="language">
         <SelectLang />
-        {/* <select onChange={onChange}> */}
-        {/* <option value="en">EN</option>
-        <option value="fr">FR</option>
-        <option value="ru">RU</option> */}
-        {/* {Object.values(langs).map((lang) =>
-          {<option value={lang}>{lang.tuUpperCase()}</option>}) */}
-        {/* </select> */}
       </div>
       <div className="authorization">
         <NavLink className="link" to={'/'} onClick={logoutHandler}>
