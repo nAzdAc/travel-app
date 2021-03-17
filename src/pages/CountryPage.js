@@ -57,7 +57,7 @@ export const CountryPage = ({ name }) => {
         setCountryRate(data.currency);
 			} catch (e) {}
 		},
-		[ token, request ]
+		[request, countryData.name, countryData.capital, countryData.currency, token]
 	);
 
   useEffect(() => {
