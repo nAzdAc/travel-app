@@ -55,10 +55,9 @@ export const CountryPage = (props) => {
   const [countryWeather, setCountryWeather] = useState({});
   const [countryRate, setCountryRate] = useState({});
   // const [countryMainInfo, setCountryMainInfo] = useState({});
-  const { loading, request } = useHttp();
+  const { request } = useHttp();
   const { token } = useContext(AuthContext);
   const [coordinate, setCoordinate] = useState({ lat: 55.75, lon: 37.57 });
-  console.log(loading)
 
   const countryData = data.find((c) => c.name === name);
   const countryTitle = `${countryData.name}, ${countryData.capital}`;
