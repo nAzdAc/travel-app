@@ -5,6 +5,7 @@ const getRoute = (trailing) => `${origin}/${trailing}`;
 export const routes = {
 	register: getRoute('register'),
 	login: getRoute('login'),
-	rating: getRoute('rating'),
+	rating: getRoute('all-rating'),
+	postRating: getRoute('post-rating'),
 	country: getRoute('country')
 };

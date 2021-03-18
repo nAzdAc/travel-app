@@ -9,9 +9,9 @@ import { Footer } from "../components/Footer";
 import { HeaderCountry } from "../components/HeaderCountry";
 import { ImageLarge } from "../components/ImageLarge";
 import { H1 } from "../components/H1";
-import { TextMedium } from "../components/TextMedium";
+// import { TextMedium } from "../components/TextMedium";
 import { TextColor } from "../components/TextColor";
-import data from "../data";
+// import data from "../data";
 import { AuthContext } from "../context/AuthContext";
 import { useHttp } from "../hooks/http.hook";
 import { routes } from "../utils/routes";
@@ -19,49 +19,55 @@ import { useParams } from "react-router-dom";
 import { H2 } from "../components/H2";
 import { YMaps, Map, Placemark, FullscreenControl} from "react-yandex-maps";
 import "../../src/map.css";
+import {SimpleSlider} from "../components/Slider";
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
+import "../../src/slider.css";
+import { Rating } from '../components/Rating';
+
+
 
 const CountryStyled = styled.div``;
-const RatingWrapperStyled = styled.div`
-  display: flex;
-`;
+const RatingWrapperStyled = styled.div`display: flex;`;
 const AddInfoWrapperStyled = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
 
-  @media (max-width: 1300px) {
-    flex-direction: column;
-  }
+	@media (max-width: 1300px) {
+		flex-direction: column;
+	}
 `;
 
 const WeatherWrapperStyled = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 10px;
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 10px;
 `;
 
 const RateStyled = styled.p`
-  font-size: 20px;
-  font-weight: bold;
-  font-style: italic;
-  color: #ff6b35;
-  margin: 5px 0;
+	font-size: 20px;
+	font-weight: bold;
+	font-style: italic;
+	color: #ff6b35;
+	margin: 5px 0;
 `;
 
-const apiKey = "5ae2e3f221c38a28845f05b6d03a8c16da44b986d76a13df718bebe0";
+const apiKey = '5ae2e3f221c38a28845f05b6d03a8c16da44b986d76a13df718bebe0';
 
 export const CountryPage = (props) => {
   const { name, capital, code} = useParams();
   const [countryWeather, setCountryWeather] = useState({});
+  const [attractionsList, setAttractionsList] = useState([]);
   const [countryRate, setCountryRate] = useState({});
-  // const [countryMainInfo, setCountryMainInfo] = useState({});
+  const [ imageUrl, setImageUrl ] = useState('');
   const { request } = useHttp();
   const { token } = useContext(AuthContext);
   const [coordinate, setCoordinate] = useState({ lat: 55.75, lon: 37.57 });
 
-  const countryData = data.find((c) => c.name === name);
-  const countryTitle = `${countryData.name}, ${countryData.capital}`;
-  const countryDescription = countryData.description;
+  // const countryData = data.find((c) => c.name === name);
+  const countryTitle = `${name}, ${capital}`;
+  // const countryDescription = countryData.description;
 
   const fetchWeather = useCallback(async () => {
     try {
@@ -73,45 +79,61 @@ export const CountryPage = (props) => {
           Authorization: `Bearer ${token}`,
         }
       );
+      console.log(data)
+      setImageUrl(data.imageUrl)
       setCountryWeather(data.weather);
       setCountryRate(data.currency);
     } catch (e) {}
   }, [token, request,capital,code,name]);
-  // const fetchCountryMainInfo = useCallback(async () => {
-  //   return await fetch(`https://restcountries.eu/rest/v2/name/${name}`)
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       setCountryMainInfo(data[0]);
-  //       console.log(countryMainInfo);
-  //     });
-  // }, [name]);
+
+  const firstLoad = useCallback(async ()  => {
+		apiGet(
+      "radius",
+      `radius=1000&limit=${3}&offset=${0}&lon=${coordinate.lon}&lat=${coordinate.lat}&rate=2&format=json`
+		).then(function(data) {
+      // setAttractionsid(data)
+      // console.log(attractionsList)
+
+      let attractionsId = []
+      data.map((item) => 
+      apiGet("xid/" + item.xid).then(data => attractionsId.push(data) 
+      ))
+      console.log(attractionsId)
+      setAttractionsList(attractionsId)
+      // console.log(attractionsList)
+      
+		});
+	}, [coordinate.lon,coordinate.lat]);
 
   const fetchCapitalCoordinate = useCallback(async () => {
     apiGet("geoname", "name=" + capital).then(function (data) {
       if (data.status === "OK") {
         setCoordinate({ lat: data.lat, lon: data.lon });
-        console.log(data);
+        firstLoad();
       }
     });
-  }, [capital]);
+  }, [capital,firstLoad]);
   useEffect(() => {
-    // fetchCountryMainInfo();
     fetchCapitalCoordinate();
   }, [ fetchCapitalCoordinate]);
 
-  useEffect(() => {
-    fetchWeather();
-  }, [fetchWeather]);
+	useEffect(
+		() => {
+			fetchWeather();
+		},
+		[ fetchWeather ]
+	);
 
   return (
     <CountryStyled>
       <HeaderCountry />
-      <ImageLarge url={countryData.imageUrl} />
+      <Rating />
+			<ImageLarge url={imageUrl} />
       <RatingWrapperStyled>
         <H1 text={countryTitle} />
         <div>rating</div>
       </RatingWrapperStyled>
-      <TextMedium text={countryDescription} />
+      {/* <TextMedium text={countryDescription} /> */}
       <AddInfoWrapperStyled>
         <WeatherWrapperStyled>
           <div>
@@ -128,9 +150,12 @@ export const CountryPage = (props) => {
         <WeatherWrapperStyled>
           <TextColor text={new Date().toLocaleTimeString()} />
           <TextColor text={new Date().toLocaleDateString()} />
-          <RateStyled>{countryData.capital}</RateStyled>
+          {/* <RateStyled>{countryData.capital}</RateStyled> */}
         </WeatherWrapperStyled>
       </AddInfoWrapperStyled>
+      <H2 text="Достопримечательности"></H2>
+      <SimpleSlider attractions={attractionsList}></SimpleSlider>
+
       <H2 text="Расположение"></H2>
       <YMaps>
         <div className="map-conteiner">
@@ -149,20 +174,13 @@ export const CountryPage = (props) => {
 };
 
 function apiGet(method, query) {
-  return new Promise(function (resolve, reject) {
-    var otmAPI =
-      "https://api.opentripmap.com/0.1/en/places/" +
-      method +
-      "?apikey=" +
-      apiKey;
-    if (query !== undefined) {
-      otmAPI += "&" + query;
-    }
-    fetch(otmAPI)
-      .then((response) => response.json())
-      .then((data) => resolve(data))
-      .catch(function (err) {
-        console.log("Fetch Error :-S", err);
-      });
-  });
+	return new Promise(function(resolve, reject) {
+		var otmAPI = 'https://api.opentripmap.com/0.1/en/places/' + method + '?apikey=' + apiKey;
+		if (query !== undefined) {
+			otmAPI += '&' + query;
+		}
+		fetch(otmAPI).then((response) => response.json()).then((data) => resolve(data)).catch(function(err) {
+			console.log('Fetch Error :-S', err);
+		});
+	});
 }

@@ -144,11 +144,11 @@ input.yellow-input:focus + label {
   color: #989898;
 }
 
-.rating[data-total-rating="1"] .rating-item:nth-child(n + 5),
-.rating[data-total-rating="2"] .rating-item:nth-child(n + 4),
-.rating[data-total-rating="3"] .rating-item:nth-child(n + 3),
-.rating[data-total-rating="4"] .rating-item:nth-child(n + 2),
-.rating[data-total-rating="5"] .rating-item:nth-child(n + 1) {
+.rating[value="1"] .rating-item:nth-child(n + 5),
+.rating[value="2"] .rating-item:nth-child(n + 4),
+.rating[value="3"] .rating-item:nth-child(n + 3),
+.rating[value="4"] .rating-item:nth-child(n + 2),
+.rating[value="5"] .rating-item:nth-child(n + 1) {
   color: orange;
 }
 
