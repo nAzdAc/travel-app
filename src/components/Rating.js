@@ -15,7 +15,7 @@ export const Rating = () => {
 		async () => {
       console.log('fetchRating')
 			try {
-				const data = await request(`http://localhost:8080/all-rating?attraction=${attraction}`, 'GET', null, {
+				const data = await request(`${routes.rating}?attraction=${attraction}`, 'GET', null, {
 					Authorization: `Bearer ${token}`
 				});
         console.log(data);
@@ -31,7 +31,7 @@ export const Rating = () => {
 	const postRating = async (value) => {
 		try {
 			const data = await request(
-				'http://localhost:8080/post-rating',
+				routes.postRating,
 				'POST',
 				{ attraction, value },
 				{
@@ -39,13 +39,13 @@ export const Rating = () => {
 				}
 			);
 			console.log(data);
-			// setRatings((prev) => prev = data)
+			// setRatings((prev) => prev = data.value)
 		} catch (e) {}
 	};
 
 	return (
 		<div className="rating-wrap">
-			<div className="rating">
+			<div className="rating" value={ratings}>
 				{ratingValues.map((item) => {
 					return (
 						<div className="rating-item" key={item} value={item} onClick={() => postRating(item)}>

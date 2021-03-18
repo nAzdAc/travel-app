@@ -14,6 +14,7 @@ import { useParams } from 'react-router-dom';
 import { H2 } from '../components/H2';
 import { YMaps, Map, Placemark, FullscreenControl } from 'react-yandex-maps';
 import '../../src/map.css';
+import { Rating } from '../components/Rating';
 
 const CountryStyled = styled.div``;
 const RatingWrapperStyled = styled.div`display: flex;`;
@@ -43,10 +44,13 @@ const RateStyled = styled.p`
 
 const apiKey = '5ae2e3f221c38a28845f05b6d03a8c16da44b986d76a13df718bebe0';
 
+const local = 'http://localhost:8080/country';
+
 export const CountryPage = (props) => {
 	const { name, capital, code } = useParams();
 	const [ countryWeather, setCountryWeather ] = useState({});
 	const [ countryRate, setCountryRate ] = useState({});
+	const [ imageUrl, setImageUrl ] = useState('');
 	// const [countryMainInfo, setCountryMainInfo] = useState({});
 	const { request } = useHttp();
 	const { token } = useContext(AuthContext);
@@ -59,14 +63,11 @@ export const CountryPage = (props) => {
 	const fetchWeather = useCallback(
 		async () => {
 			try {
-				const data = await request(
-					`${routes.country}?country=${name}&capital=${capital}&currencyCode=${code}`,
-					'GET',
-					null,
-					{
-						Authorization: `Bearer ${token}`
-					}
-				);
+				const data = await request(`${routes.country}?country=${name}&capital=${capital}&currencyCode=${code}`, 'GET', null, {
+					Authorization: `Bearer ${token}`
+				});
+				console.log(data)
+				setImageUrl(data.imageUrl)
 				setCountryWeather(data.weather);
 				setCountryRate(data.currency);
 			} catch (e) {}
@@ -111,10 +112,10 @@ export const CountryPage = (props) => {
 	return (
 		<CountryStyled>
 			<HeaderCountry />
-			<ImageLarge url={countryData.imageUrl} />
+			<Rating />
+			<ImageLarge url={imageUrl} />
 			<RatingWrapperStyled>
 				<H1 text={countryTitle} />
-				<div>rating</div>
 			</RatingWrapperStyled>
 			<TextMedium text={countryDescription} />
 			<AddInfoWrapperStyled>
