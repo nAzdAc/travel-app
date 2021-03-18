@@ -1,9 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import superagent from 'superagent';
-
-// const countryName = 'italy';
-// const apiKey = 'AIzaSyDb1NyNblAq79WkdTeZbgCtRMBLXR8Clwg';
-// const link = `https://www.googleapis.com/youtube/v3/search?maxResults=1&key=${apiKey}&type=video&q=${countryName}`;
 
 async function getId(country) {
   console.log({ country });
