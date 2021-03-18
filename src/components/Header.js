@@ -81,6 +81,7 @@ function Hit(props) {
 	// let lat = "28.28713"; // place latitude
 	// let offset = 0; // offset from first object in the list
 	// let count = 0; // total objects count
+
 	// const firstLoad = () => {
 	// 	apiGet(
 	// 		"radius",
@@ -139,3 +140,12 @@ hit: PropTypes.object.isRequired,
 // 	}
 	
 // }
+
+// const fetchCountryMainInfo = useCallback(async () => {
+  //   return await fetch(`https://restcountries.eu/rest/v2/name/${name}`)
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       setCountryMainInfo(data[0]);
+  //       console.log(countryMainInfo);
+  //     });
+  // }, [name]);

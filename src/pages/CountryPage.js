@@ -7,11 +7,11 @@ import React, {
 import styled from "styled-components";
 import { Footer } from "../components/Footer";
 import { HeaderCountry } from "../components/HeaderCountry";
-import { ImageLarge } from "../components/ImageLarge";
+// import { ImageLarge } from "../components/ImageLarge";
 import { H1 } from "../components/H1";
-import { TextMedium } from "../components/TextMedium";
+// import { TextMedium } from "../components/TextMedium";
 import { TextColor } from "../components/TextColor";
-import data from "../data";
+// import data from "../data";
 import { AuthContext } from "../context/AuthContext";
 import { useHttp } from "../hooks/http.hook";
 import { routes } from "../utils/routes";
@@ -57,39 +57,17 @@ const RateStyled = styled.p`
 const apiKey = "5ae2e3f221c38a28845f05b6d03a8c16da44b986d76a13df718bebe0";
 
 export const CountryPage = (props) => {
-  const attractions = [
-    {
-      attraction:"Minaret",
-      img:'http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcQXNkmWQfOPlDQwAsxvElT0Nu4xpawANrTamMZLkuVMLwiY5v7w3KNAdamSC0bVYTHy_DAqNUrjsIyT_gJO4G8',
-      text: "В архитектуре ислама минаретом называют круглую, квадратную или многогранную башню в сечении, с которой призывают верующих муэдзины. Украшались минареты кирпичной узорной кладкой, глазурованной керамикой, резь",
-    },
-    {
-      attraction:"Minaret",
-      img:'http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcQXNkmWQfOPlDQwAsxvElT0Nu4xpawANrTamMZLkuVMLwiY5v7w3KNAdamSC0bVYTHy_DAqNUrjsIyT_gJO4G8',
-      text: "В архитектуре ислама минаретом называют круглую, квадратную или многогранную башню в сечении, с которой призывают верующих муэдзины. Украшались минареты кирпичной узорной кладкой, глазурованной керамикой, резь",
-    },
-    {
-      attraction:"Minaret",
-      img:'http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcQXNkmWQfOPlDQwAsxvElT0Nu4xpawANrTamMZLkuVMLwiY5v7w3KNAdamSC0bVYTHy_DAqNUrjsIyT_gJO4G8',
-      text: "В архитектуре ислама минаретом называют круглую, квадратную или многогранную башню в сечении, с которой призывают верующих муэдзины. Украшались минареты кирпичной узорной кладкой, глазурованной керамикой, резь",
-    },
-    {
-      attraction:"Minaret",
-      img:'http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcQXNkmWQfOPlDQwAsxvElT0Nu4xpawANrTamMZLkuVMLwiY5v7w3KNAdamSC0bVYTHy_DAqNUrjsIyT_gJO4G8',
-      text: "В архитектуре ислама минаретом называют круглую, квадратную или многогранную башню в сечении, с которой призывают верующих муэдзины. Украшались минареты кирпичной узорной кладкой, глазурованной керамикой, резь",
-    }
-  ]
   const { name, capital, code} = useParams();
   const [countryWeather, setCountryWeather] = useState({});
+  const [attractionsList, setAttractionsList] = useState([]);
   const [countryRate, setCountryRate] = useState({});
-  // const [countryMainInfo, setCountryMainInfo] = useState({});
   const { request } = useHttp();
   const { token } = useContext(AuthContext);
   const [coordinate, setCoordinate] = useState({ lat: 55.75, lon: 37.57 });
 
-  const countryData = data.find((c) => c.name === name);
-  const countryTitle = `${countryData.name}, ${countryData.capital}`;
-  const countryDescription = countryData.description;
+  // const countryData = data.find((c) => c.name === name);
+  const countryTitle = `${name}, ${capital}`;
+  // const countryDescription = countryData.description;
 
   const fetchWeather = useCallback(async () => {
     try {
@@ -105,25 +83,35 @@ export const CountryPage = (props) => {
       setCountryRate(data.currency);
     } catch (e) {}
   }, [token, request,capital,code,name]);
-  // const fetchCountryMainInfo = useCallback(async () => {
-  //   return await fetch(`https://restcountries.eu/rest/v2/name/${name}`)
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       setCountryMainInfo(data[0]);
-  //       console.log(countryMainInfo);
-  //     });
-  // }, [name]);
+
+  const firstLoad = useCallback(async ()  => {
+		apiGet(
+      "radius",
+      `radius=1000&limit=${3}&offset=${0}&lon=${coordinate.lon}&lat=${coordinate.lat}&rate=2&format=json`
+		).then(function(data) {
+      // setAttractionsid(data)
+      // console.log(attractionsList)
+
+      let attractionsId = []
+      data.map((item) => 
+      apiGet("xid/" + item.xid).then(data => attractionsId.push(data) 
+      ))
+      console.log(attractionsId)
+      setAttractionsList(attractionsId)
+      // console.log(attractionsList)
+      
+		});
+	}, [coordinate.lon,coordinate.lat]);
 
   const fetchCapitalCoordinate = useCallback(async () => {
     apiGet("geoname", "name=" + capital).then(function (data) {
       if (data.status === "OK") {
         setCoordinate({ lat: data.lat, lon: data.lon });
-        console.log(data);
+        firstLoad();
       }
     });
-  }, [capital]);
+  }, [capital,firstLoad]);
   useEffect(() => {
-    // fetchCountryMainInfo();
     fetchCapitalCoordinate();
   }, [ fetchCapitalCoordinate]);
 
@@ -134,12 +122,12 @@ export const CountryPage = (props) => {
   return (
     <CountryStyled>
       <HeaderCountry />
-      <ImageLarge url={countryData.imageUrl} />
+      {/* <ImageLarge url={countryData.imageUrl} /> */}
       <RatingWrapperStyled>
         <H1 text={countryTitle} />
         <div>rating</div>
       </RatingWrapperStyled>
-      <TextMedium text={countryDescription} />
+      {/* <TextMedium text={countryDescription} /> */}
       <AddInfoWrapperStyled>
         <WeatherWrapperStyled>
           <div>
@@ -156,11 +144,11 @@ export const CountryPage = (props) => {
         <WeatherWrapperStyled>
           <TextColor text={new Date().toLocaleTimeString()} />
           <TextColor text={new Date().toLocaleDateString()} />
-          <RateStyled>{countryData.capital}</RateStyled>
+          {/* <RateStyled>{countryData.capital}</RateStyled> */}
         </WeatherWrapperStyled>
       </AddInfoWrapperStyled>
       <H2 text="Достопримечательности"></H2>
-      <SimpleSlider attractions={attractions}></SimpleSlider>
+      <SimpleSlider attractions={attractionsList}></SimpleSlider>
 
       <H2 text="Расположение"></H2>
       <YMaps>

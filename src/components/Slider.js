@@ -14,7 +14,7 @@ export const SimpleSlider = ({ attractions }) => {
       slidesToScroll: 2
     }
     const listItems = attractions.map((item,index) =>
-      <Slide key={index} attraction={item.attraction} img={item.img} text={item.text}></Slide>
+      <Slide key={index} attraction={item.name} img={item.preview? item.preview.source: 'https://upload.wikimedia.org/wikipedia/ru/thumb/5/57/Ukraina.JPG/300px-Ukraina.JPG'} text={item.wikipedia_extracts.text}></Slide>
     );
 
     return (
@@ -29,11 +29,11 @@ export const SimpleSlider = ({ attractions }) => {
 const Slide = ({ img,attraction,text}) => {
   return(
     <li className="sliderItemConteiner">
-    <div className="sliderItem">
-      <img className="sliderImg" src={img} alt="img"></img>
-      <h3 className="sliderTitle">{attraction}</h3>
-      <p className="sliderDescription">{text}</p>
-    </div>
-  </li>
+      <div className="sliderItem">
+        <img className="sliderImg" src={img} alt="img"></img>
+        <h3 className="sliderTitle">{attraction}</h3>
+        <p className="sliderDescription">{text}</p>
+      </div>
+    </li>
   )
 };
