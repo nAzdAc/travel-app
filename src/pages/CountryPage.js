@@ -3,7 +3,6 @@ import React, {
   useState,
   useCallback,
   useContext,
-  useLayoutEffect,
 } from "react";
 import styled from "styled-components";
 import { Footer } from "../components/Footer";
@@ -18,7 +17,7 @@ import { useHttp } from "../hooks/http.hook";
 import { routes } from "../utils/routes";
 import { useParams } from "react-router-dom";
 import { H2 } from "../components/H2";
-import { YMaps, Map, Placemark, FullscreenControl, Panorama } from "react-yandex-maps";
+import { YMaps, Map, Placemark, FullscreenControl} from "react-yandex-maps";
 import "../../src/map.css";
 
 const CountryStyled = styled.div``;
@@ -59,6 +58,7 @@ export const CountryPage = (props) => {
   const { loading, request } = useHttp();
   const { token } = useContext(AuthContext);
   const [coordinate, setCoordinate] = useState({ lat: 55.75, lon: 37.57 });
+  console.log(loading)
 
   const countryData = data.find((c) => c.name === name);
   const countryTitle = `${countryData.name}, ${countryData.capital}`;
@@ -77,7 +77,7 @@ export const CountryPage = (props) => {
       setCountryWeather(data.weather);
       setCountryRate(data.currency);
     } catch (e) {}
-  }, [token, request]);
+  }, [token, request,capital,code,name]);
   // const fetchCountryMainInfo = useCallback(async () => {
   //   return await fetch(`https://restcountries.eu/rest/v2/name/${name}`)
   //     .then((response) => response.json())
@@ -89,7 +89,6 @@ export const CountryPage = (props) => {
 
   const fetchCapitalCoordinate = useCallback(async () => {
     apiGet("geoname", "name=" + capital).then(function (data) {
-      let message = "Name not found";
       if (data.status === "OK") {
         setCoordinate({ lat: data.lat, lon: data.lon });
         console.log(data);

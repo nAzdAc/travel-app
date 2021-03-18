@@ -12,10 +12,6 @@ import {
   Configure,
 } from 'react-instantsearch-dom';
 import PropTypes from 'prop-types';
-import { useHttp } from '../hooks/http.hook';
-import {
-  useParams
-} from "react-router-dom";
 
 const searchClient = algoliasearch('YIT6C1K5J5', '93905f6f171e09927bb50b998b8141a5');
 
@@ -26,9 +22,9 @@ export const Header = () => {
 
 	function logoutHandler(event) {
 
-		// event.preventDefault();
-		// auth.logout();
-		// history.push();
+		event.preventDefault();
+		auth.logout();
+		history.push();
 	}
 	return (
 		<InstantSearch searchClient={searchClient} indexName="countries">
@@ -115,9 +111,9 @@ function Hit(props) {
 
     return (
         <NavLink to={`/country/${spaceToUnderscore(props.hit.name)}/${spaceToUnderscore(props.hit.capital)}&${props.hit.currencies[0].code}`}>
-					<img src={props.hit.flag} className="country-img"></img>
+					<img src={props.hit.flag} className="country-img" alt="img"></img>
 					<div className="country">
-						<span><img className="country-flag" src={props.hit.flag}></img></span>
+						<span><img className="country-flag" src={props.hit.flag} alt="img"></img></span>
 						<span className="country-title">{props.hit.name}, {props.hit.capital}</span>
 					</div>
         </NavLink>
@@ -127,27 +123,6 @@ function Hit(props) {
 Hit.propTypes = {
 hit: PropTypes.object.isRequired,
 };
-
-const apiKey = "5ae2e3f221c38a28845f05b6d03a8c16da44b986d76a13df718bebe0";
-
-function apiGet(method, query) {
-	return new Promise(function(resolve, reject) {
-		var otmAPI =
-			"https://api.opentripmap.com/0.1/en/places/" +
-			method +
-			"?apikey=" +
-			apiKey;
-		if (query !== undefined) {
-			otmAPI += "&" + query;
-		}
-		fetch(otmAPI)
-			.then(response => response.json())
-			.then(data => resolve(data))
-			.catch(function(err) {
-				console.log("Fetch Error :-S", err);
-			});
-	});
-}
 
 const spaceToUnderscore = (expresion) =>{
 	let newExprestion = ''
