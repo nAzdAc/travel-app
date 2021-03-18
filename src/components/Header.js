@@ -114,7 +114,7 @@ function Hit(props) {
 			//  useEffect( () => {fetchData()},[]);
 
     return (
-        <NavLink to={`/country/${spaceToUnderscore(props.hit.name)}`}>
+        <NavLink to={`/country/${spaceToUnderscore(props.hit.name)}/${spaceToUnderscore(props.hit.capital)}&${props.hit.currencies[0].code}`}>
 					<img src={props.hit.flag} className="country-img"></img>
 					<div className="country">
 						<span><img className="country-flag" src={props.hit.flag}></img></span>

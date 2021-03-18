@@ -52,10 +52,10 @@ const RateStyled = styled.p`
 const apiKey = "5ae2e3f221c38a28845f05b6d03a8c16da44b986d76a13df718bebe0";
 
 export const CountryPage = (props) => {
-  const { name } = useParams();
+  const { name, capital, code} = useParams();
   const [countryWeather, setCountryWeather] = useState({});
   const [countryRate, setCountryRate] = useState({});
-  const [countryMainInfo, setCountryMainInfo] = useState({});
+  // const [countryMainInfo, setCountryMainInfo] = useState({});
   const { loading, request } = useHttp();
   const { token } = useContext(AuthContext);
   const [coordinate, setCoordinate] = useState({ lat: 55.75, lon: 37.57 });
@@ -67,7 +67,7 @@ export const CountryPage = (props) => {
   const fetchWeather = useCallback(async () => {
     try {
       const data = await request(
-        `${routes.country}?country=${countryData.name}&capital=${countryData.capital}&currencyCode=${countryData.currency}`,
+        `${routes.country}?country=${name}&capital=${capital}&currencyCode=${code}`,
         "GET",
         null,
         {
@@ -78,28 +78,28 @@ export const CountryPage = (props) => {
       setCountryRate(data.currency);
     } catch (e) {}
   }, [token, request]);
-  const fetchCountryMainInfo = useCallback(async () => {
-    return await fetch(`https://restcountries.eu/rest/v2/name/${name}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setCountryMainInfo(data[0]);
-        console.log(countryMainInfo);
-      });
-  }, [name]);
+  // const fetchCountryMainInfo = useCallback(async () => {
+  //   return await fetch(`https://restcountries.eu/rest/v2/name/${name}`)
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       setCountryMainInfo(data[0]);
+  //       console.log(countryMainInfo);
+  //     });
+  // }, [name]);
 
   const fetchCapitalCoordinate = useCallback(async () => {
-    apiGet("geoname", "name=" + countryMainInfo.capital).then(function (data) {
+    apiGet("geoname", "name=" + capital).then(function (data) {
       let message = "Name not found";
       if (data.status === "OK") {
         setCoordinate({ lat: data.lat, lon: data.lon });
         console.log(data);
       }
     });
-  }, [countryMainInfo.capital]);
+  }, [capital]);
   useEffect(() => {
-    fetchCountryMainInfo();
+    // fetchCountryMainInfo();
     fetchCapitalCoordinate();
-  }, [fetchCountryMainInfo, fetchCapitalCoordinate]);
+  }, [ fetchCapitalCoordinate]);
 
   useEffect(() => {
     fetchWeather();
