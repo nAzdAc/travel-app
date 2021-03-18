@@ -7,7 +7,7 @@ import React, {
 import styled from "styled-components";
 import { Footer } from "../components/Footer";
 import { HeaderCountry } from "../components/HeaderCountry";
-// import { ImageLarge } from "../components/ImageLarge";
+import { ImageLarge } from "../components/ImageLarge";
 import { H1 } from "../components/H1";
 // import { TextMedium } from "../components/TextMedium";
 import { TextColor } from "../components/TextColor";
@@ -23,44 +23,44 @@ import {SimpleSlider} from "../components/Slider";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import "../../src/slider.css";
+import { Rating } from '../components/Rating';
 
 
 
 const CountryStyled = styled.div``;
-const RatingWrapperStyled = styled.div`
-  display: flex;
-`;
+const RatingWrapperStyled = styled.div`display: flex;`;
 const AddInfoWrapperStyled = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
 
-  @media (max-width: 1300px) {
-    flex-direction: column;
-  }
+	@media (max-width: 1300px) {
+		flex-direction: column;
+	}
 `;
 
 const WeatherWrapperStyled = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 10px;
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 10px;
 `;
 
 const RateStyled = styled.p`
-  font-size: 20px;
-  font-weight: bold;
-  font-style: italic;
-  color: #ff6b35;
-  margin: 5px 0;
+	font-size: 20px;
+	font-weight: bold;
+	font-style: italic;
+	color: #ff6b35;
+	margin: 5px 0;
 `;
 
-const apiKey = "5ae2e3f221c38a28845f05b6d03a8c16da44b986d76a13df718bebe0";
+const apiKey = '5ae2e3f221c38a28845f05b6d03a8c16da44b986d76a13df718bebe0';
 
 export const CountryPage = (props) => {
   const { name, capital, code} = useParams();
   const [countryWeather, setCountryWeather] = useState({});
   const [attractionsList, setAttractionsList] = useState([]);
   const [countryRate, setCountryRate] = useState({});
+  const [ imageUrl, setImageUrl ] = useState('');
   const { request } = useHttp();
   const { token } = useContext(AuthContext);
   const [coordinate, setCoordinate] = useState({ lat: 55.75, lon: 37.57 });
@@ -79,6 +79,8 @@ export const CountryPage = (props) => {
           Authorization: `Bearer ${token}`,
         }
       );
+      console.log(data)
+      setImageUrl(data.imageUrl)
       setCountryWeather(data.weather);
       setCountryRate(data.currency);
     } catch (e) {}
@@ -115,14 +117,18 @@ export const CountryPage = (props) => {
     fetchCapitalCoordinate();
   }, [ fetchCapitalCoordinate]);
 
-  useEffect(() => {
-    fetchWeather();
-  }, [fetchWeather]);
+	useEffect(
+		() => {
+			fetchWeather();
+		},
+		[ fetchWeather ]
+	);
 
   return (
     <CountryStyled>
       <HeaderCountry />
-      {/* <ImageLarge url={countryData.imageUrl} /> */}
+      <Rating />
+			<ImageLarge url={imageUrl} />
       <RatingWrapperStyled>
         <H1 text={countryTitle} />
         <div>rating</div>
@@ -168,20 +174,13 @@ export const CountryPage = (props) => {
 };
 
 function apiGet(method, query) {
-  return new Promise(function (resolve, reject) {
-    var otmAPI =
-      "https://api.opentripmap.com/0.1/en/places/" +
-      method +
-      "?apikey=" +
-      apiKey;
-    if (query !== undefined) {
-      otmAPI += "&" + query;
-    }
-    fetch(otmAPI)
-      .then((response) => response.json())
-      .then((data) => resolve(data))
-      .catch(function (err) {
-        console.log("Fetch Error :-S", err);
-      });
-  });
+	return new Promise(function(resolve, reject) {
+		var otmAPI = 'https://api.opentripmap.com/0.1/en/places/' + method + '?apikey=' + apiKey;
+		if (query !== undefined) {
+			otmAPI += '&' + query;
+		}
+		fetch(otmAPI).then((response) => response.json()).then((data) => resolve(data)).catch(function(err) {
+			console.log('Fetch Error :-S', err);
+		});
+	});
 }
