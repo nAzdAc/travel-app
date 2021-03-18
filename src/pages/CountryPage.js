@@ -10,6 +10,8 @@ import data from '../data';
 import axios from 'axios';
 import { AuthContext } from '../context/AuthContext';
 import { useHttp } from '../hooks/http.hook';
+import { Rating } from '../components/Rating';
+import { routes } from '../utils/routes';
 
 const CountryStyled = styled.div``;
 const RatingWrapperStyled = styled.div`display: flex;`;
@@ -43,44 +45,33 @@ export const CountryPage = ({ name }) => {
 	const countryTitle = `${countryData.name}, ${countryData.capital}`;
 	const countryDescription = countryData.description;
 
-	// useEffect(() => {
-	// 	let mounted = true;
-	// 	console.log(countryData)
-	// 	getResource(getWeatherApi(countryData.capital)).then((data) => {
-	// 		if (mounted) {
-	// 			setCountryWeather((prev) => ({ ...prev, data }));
-	// 			console.log(countryWeather)
-	// 			console.log(data)
-	// 		}
-	// 		console.log(countryWeather)
-	// 	});
-	// 	return () => (mounted = false);
-	// }, []);
   
-  const fetchWeather = useCallback(
-		async () => {
-      console.log('feactWeather')
-			try {
-				const data = await request(`http://localhost:8080/country?country=${countryData.name}&capital=${countryData.capital}&currencyCode=${countryData.currency}`, 'GET', null, {
-					Authorization: `Bearer ${token}`
-				});
-				console.log(data)
-				const {wind, pressure, temperature, humidity, altText, icon } = data.weather
-				console.log(data.weather)
-				setCountryWeather(data)
-			} catch (e) {}
-		},
-		[ token, request ]
-	);
+  // const fetchWeather = useCallback(
+	// 	async () => {
+  //     console.log('feactWeather')
+	// 		try {
+	// 			const data = await request(`${routes.country}?country=${countryData.name}&capital=${countryData.capital}&currencyCode=${countryData.currency}`, 'GET', null, {
+	// 				Authorization: `Bearer ${token}`
+	// 			});
+	// 			console.log(data)
+	// 			const {wind, pressure, temperature, humidity, altText, icon } = data.weather
+	// 			console.log(data.weather)
+	// 			setCountryWeather(data)
+	// 		} catch (e) {}
+	// 	},
+	// 	[ token, request ]
+	// );
 
-  useEffect(() => {
-    fetchWeather()
-  }, [fetchWeather])
+  // useEffect(() => {
+  //   fetchWeather()
+  // }, [fetchWeather])
 
 	return (
 		<CountryStyled>
 			<Header />
+			
 			<ImageLarge url={countryData.imageUrl} />
+			<Rating />
 			<RatingWrapperStyled>
 				<H1 text={countryTitle} />
 				<div>rating</div>

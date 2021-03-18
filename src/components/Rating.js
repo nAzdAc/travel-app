@@ -4,7 +4,7 @@ import { routes } from '../utils/routes';
 import { AuthContext } from '../context/AuthContext';
 
 const ratingValues = [ 5, 4, 3, 2, 1 ];
-const country = 'spain';
+const attraction = 'sweden';
 
 export const Rating = () => {
 	const { loading, request } = useHttp();
@@ -15,11 +15,10 @@ export const Rating = () => {
 		async () => {
       console.log('fetchRating')
 			try {
-				const data = await request(`http://localhost:8080/all-rating?country=${country}`, 'GET', null, {
+				const data = await request(`http://localhost:8080/all-rating?attraction=${attraction}`, 'GET', null, {
 					Authorization: `Bearer ${token}`
 				});
-        // console.log(data);
-				// setLinks(data);
+        console.log(data);
 			} catch (e) {}
 		},
 		[ token, request ]
@@ -34,12 +33,13 @@ export const Rating = () => {
 			const data = await request(
 				'http://localhost:8080/post-rating',
 				'POST',
-				{ country, value },
+				{ attraction, value },
 				{
 					Authorization: `Bearer ${token}`
 				}
 			);
 			console.log(data);
+			// setRatings((prev) => prev = data)
 		} catch (e) {}
 	};
 
