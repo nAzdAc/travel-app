@@ -4,9 +4,9 @@ import { routes } from '../utils/routes';
 import { AuthContext } from '../context/AuthContext';
 
 const ratingValues = [ 5, 4, 3, 2, 1 ];
-const attraction = 'sweden';
+// const attraction = 'sweden';
 
-export const Rating = () => {
+export const Rating = ({attraction}) => {
 	const { loading, request } = useHttp();
 	const [ ratings, setRatings ] = useState(0);
 	const { token } = useContext(AuthContext);

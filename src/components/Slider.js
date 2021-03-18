@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import "../../src/slider.css";
+import { Rating } from '../components/Rating';
 
 export const SimpleSlider = ({ attractions }) => {
   // console.log(attractions)
@@ -31,6 +32,7 @@ const Slide = ({ img,attraction,text}) => {
     <li className="sliderItemConteiner">
       <div className="sliderItem">
         <img className="sliderImg" src={img} alt="img"></img>
+        <Rating attraction={attraction}></Rating>
         <h3 className="sliderTitle">{attraction}</h3>
         <p className="sliderDescription">{text}</p>
       </div>
