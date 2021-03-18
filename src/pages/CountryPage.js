@@ -1,3 +1,4 @@
+
 import React, {
   useEffect,
   useState,
@@ -24,8 +25,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../../src/slider.css";
 import { Rating } from '../components/Rating';
-
-
+import { CountryVideo } from '../components/video';
 
 const CountryStyled = styled.div``;
 const RatingWrapperStyled = styled.div`display: flex;`;
@@ -56,7 +56,7 @@ const RateStyled = styled.p`
 const apiKey = '5ae2e3f221c38a28845f05b6d03a8c16da44b986d76a13df718bebe0';
 
 export const CountryPage = (props) => {
-  const { name, capital, code} = useParams();
+  const { name, capital, code } = useParams();
   const [countryWeather, setCountryWeather] = useState({});
   const [attractionsList, setAttractionsList] = useState([]);
   const [countryRate, setCountryRate] = useState({});
@@ -73,7 +73,7 @@ export const CountryPage = (props) => {
     try {
       const data = await request(
         `${routes.country}?country=${name}&capital=${capital}&currencyCode=${code}`,
-        "GET",
+        'GET',
         null,
         {
           Authorization: `Bearer ${token}`,
@@ -84,6 +84,7 @@ export const CountryPage = (props) => {
       setCountryWeather(data.weather);
       setCountryRate(data.currency);
     } catch (e) {}
+
   }, [token, request,capital,code,name]);
 
   const firstLoad = useCallback(async ()  => {
@@ -105,9 +106,10 @@ export const CountryPage = (props) => {
 		});
 	}, [coordinate.lon,coordinate.lat]);
 
+
   const fetchCapitalCoordinate = useCallback(async () => {
-    apiGet("geoname", "name=" + capital).then(function (data) {
-      if (data.status === "OK") {
+    apiGet('geoname', 'name=' + capital).then(function (data) {
+      if (data.status === 'OK') {
         setCoordinate({ lat: data.lat, lon: data.lon });
         firstLoad();
       }
@@ -115,7 +117,7 @@ export const CountryPage = (props) => {
   }, [capital,firstLoad]);
   useEffect(() => {
     fetchCapitalCoordinate();
-  }, [ fetchCapitalCoordinate]);
+  }, [fetchCapitalCoordinate]);
 
 	useEffect(
 		() => {
@@ -133,7 +135,11 @@ export const CountryPage = (props) => {
         <H1 text={countryTitle} />
         <div>rating</div>
       </RatingWrapperStyled>
+
       {/* <TextMedium text={countryDescription} /> */}
+      <CountryVideo country={countryData.name} />
+
+
       <AddInfoWrapperStyled>
         <WeatherWrapperStyled>
           <div>
@@ -174,6 +180,7 @@ export const CountryPage = (props) => {
 };
 
 function apiGet(method, query) {
+
 	return new Promise(function(resolve, reject) {
 		var otmAPI = 'https://api.opentripmap.com/0.1/en/places/' + method + '?apikey=' + apiKey;
 		if (query !== undefined) {
@@ -183,4 +190,5 @@ function apiGet(method, query) {
 			console.log('Fetch Error :-S', err);
 		});
 	});
+
 }
