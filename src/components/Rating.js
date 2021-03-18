@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect} from 'react';
 import { useHttp } from '../hooks/http.hook';
 import { routes } from '../utils/routes';
 import { AuthContext } from '../context/AuthContext';
@@ -7,8 +7,8 @@ const ratingValues = [ 5, 4, 3, 2, 1 ];
 // const attraction = 'sweden';
 
 export const Rating = ({attraction}) => {
-	const { loading, request } = useHttp();
-	const [ ratings, setRatings ] = useState(0);
+	const { request } = useHttp();
+	const ratings = 0;
 	const { token } = useContext(AuthContext);
 
   const fetchRating = useCallback(
@@ -21,7 +21,7 @@ export const Rating = ({attraction}) => {
         console.log(data);
 			} catch (e) {}
 		},
-		[ token, request ]
+		[ token, request, attraction ]
 	);
   
   useEffect(() => {
