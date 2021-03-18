@@ -1,24 +1,20 @@
-import React, {
-  useEffect,
-  useState,
-  useCallback,
-  useContext,
-} from "react";
-import styled from "styled-components";
-import { Footer } from "../components/Footer";
-import { HeaderCountry } from "../components/HeaderCountry";
-import { ImageLarge } from "../components/ImageLarge";
-import { H1 } from "../components/H1";
-import { TextMedium } from "../components/TextMedium";
-import { TextColor } from "../components/TextColor";
-import data from "../data";
-import { AuthContext } from "../context/AuthContext";
-import { useHttp } from "../hooks/http.hook";
-import { routes } from "../utils/routes";
-import { useParams } from "react-router-dom";
-import { H2 } from "../components/H2";
-import { YMaps, Map, Placemark, FullscreenControl} from "react-yandex-maps";
-import "../../src/map.css";
+import React, { useEffect, useState, useCallback, useContext } from 'react';
+import styled from 'styled-components';
+import { Footer } from '../components/Footer';
+import { HeaderCountry } from '../components/HeaderCountry';
+import { ImageLarge } from '../components/ImageLarge';
+import { H1 } from '../components/H1';
+import { TextMedium } from '../components/TextMedium';
+import { TextColor } from '../components/TextColor';
+import data from '../data';
+import { AuthContext } from '../context/AuthContext';
+import { useHttp } from '../hooks/http.hook';
+import { routes } from '../utils/routes';
+import { useParams } from 'react-router-dom';
+import { H2 } from '../components/H2';
+import { YMaps, Map, Placemark, FullscreenControl } from 'react-yandex-maps';
+import '../../src/map.css';
+import { CountryVideo } from '../components/video';
 
 const CountryStyled = styled.div``;
 const RatingWrapperStyled = styled.div`
@@ -48,10 +44,10 @@ const RateStyled = styled.p`
   margin: 5px 0;
 `;
 
-const apiKey = "5ae2e3f221c38a28845f05b6d03a8c16da44b986d76a13df718bebe0";
+const apiKey = '5ae2e3f221c38a28845f05b6d03a8c16da44b986d76a13df718bebe0';
 
 export const CountryPage = (props) => {
-  const { name, capital, code} = useParams();
+  const { name, capital, code } = useParams();
   const [countryWeather, setCountryWeather] = useState({});
   const [countryRate, setCountryRate] = useState({});
   // const [countryMainInfo, setCountryMainInfo] = useState({});
@@ -67,7 +63,7 @@ export const CountryPage = (props) => {
     try {
       const data = await request(
         `${routes.country}?country=${name}&capital=${capital}&currencyCode=${code}`,
-        "GET",
+        'GET',
         null,
         {
           Authorization: `Bearer ${token}`,
@@ -76,7 +72,7 @@ export const CountryPage = (props) => {
       setCountryWeather(data.weather);
       setCountryRate(data.currency);
     } catch (e) {}
-  }, [token, request,capital,code,name]);
+  }, [token, request, capital, code, name]);
   // const fetchCountryMainInfo = useCallback(async () => {
   //   return await fetch(`https://restcountries.eu/rest/v2/name/${name}`)
   //     .then((response) => response.json())
@@ -87,8 +83,8 @@ export const CountryPage = (props) => {
   // }, [name]);
 
   const fetchCapitalCoordinate = useCallback(async () => {
-    apiGet("geoname", "name=" + capital).then(function (data) {
-      if (data.status === "OK") {
+    apiGet('geoname', 'name=' + capital).then(function (data) {
+      if (data.status === 'OK') {
         setCoordinate({ lat: data.lat, lon: data.lon });
         console.log(data);
       }
@@ -97,7 +93,7 @@ export const CountryPage = (props) => {
   useEffect(() => {
     // fetchCountryMainInfo();
     fetchCapitalCoordinate();
-  }, [ fetchCapitalCoordinate]);
+  }, [fetchCapitalCoordinate]);
 
   useEffect(() => {
     fetchWeather();
@@ -112,6 +108,7 @@ export const CountryPage = (props) => {
         <div>rating</div>
       </RatingWrapperStyled>
       <TextMedium text={countryDescription} />
+      <CountryVideo country={countryData.name} />
       <AddInfoWrapperStyled>
         <WeatherWrapperStyled>
           <div>
@@ -151,18 +148,18 @@ export const CountryPage = (props) => {
 function apiGet(method, query) {
   return new Promise(function (resolve, reject) {
     var otmAPI =
-      "https://api.opentripmap.com/0.1/en/places/" +
+      'https://api.opentripmap.com/0.1/en/places/' +
       method +
-      "?apikey=" +
+      '?apikey=' +
       apiKey;
     if (query !== undefined) {
-      otmAPI += "&" + query;
+      otmAPI += '&' + query;
     }
     fetch(otmAPI)
       .then((response) => response.json())
       .then((data) => resolve(data))
       .catch(function (err) {
-        console.log("Fetch Error :-S", err);
+        console.log('Fetch Error :-S', err);
       });
   });
 }
