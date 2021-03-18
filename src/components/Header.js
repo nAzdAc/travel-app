@@ -110,7 +110,7 @@ function Hit(props) {
 			//  useEffect( () => {fetchData()},[]);
 
     return (
-        <NavLink to={`/country/${spaceToUnderscore(props.hit.name)}/${spaceToUnderscore(props.hit.capital)}&${props.hit.currencies[0].code}`}>
+        <NavLink to={encodeURI(`/country/${props.hit.name}/${props.hit.capital}&${props.hit.currencies[0].code}`)}>
 					<img src={props.hit.flag} className="country-img" alt="img"></img>
 					<div className="country">
 						<span><img className="country-flag" src={props.hit.flag} alt="img"></img></span>
@@ -124,18 +124,18 @@ Hit.propTypes = {
 hit: PropTypes.object.isRequired,
 };
 
-const spaceToUnderscore = (expresion) =>{
-	let newExprestion = ''
-	if (expresion.includes(' ')){;
-		for (let char of expresion) {
-			if(char === ' '){
-				char = '_'
-			}
-			newExprestion += char
-		}
-		return newExprestion
-	}else{
-		return expresion
-	}
+// const spaceToUnderscore = (expresion) =>{
+// 	let newExprestion = ''
+// 	if (expresion.includes(' ')){;
+// 		for (let char of expresion) {
+// 			if(char === ' '){
+// 				char = '_'
+// 			}
+// 			newExprestion += char
+// 		}
+// 		return newExprestion
+// 	}else{
+// 		return expresion
+// 	}
 	
-}
+// }

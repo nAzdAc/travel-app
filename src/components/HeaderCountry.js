@@ -8,7 +8,6 @@ export const HeaderCountry = () => {
 	const auth = useContext(AuthContext);
 
 	function logoutHandler(event) {
-		console.log('click logout')
 		event.preventDefault();
 		auth.logout();
 		history.push();
@@ -29,9 +28,9 @@ export const HeaderCountry = () => {
 			</div>
 			<div className="authorization">
 				<NavLink className="link"
-				to={'/'}
-				onClick={logoutHandler}>
-					Logout
+					to={'/'}
+					onClick={logoutHandler}>
+						Logout
 				</NavLink>
 			</div>
 		</header>

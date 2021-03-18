@@ -15,7 +15,9 @@
     "react-instantsearch-dom": "^6.10.3",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "react-slick": "^0.28.1",
     "react-yandex-maps": "^4.6.0",
+    "slick-carousel": "^1.8.1",
     "styled-components": "^5.2.1",
     "web-vitals": "^1.1.0"
   },

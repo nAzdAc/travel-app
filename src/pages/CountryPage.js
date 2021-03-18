@@ -19,6 +19,12 @@ import { useParams } from "react-router-dom";
 import { H2 } from "../components/H2";
 import { YMaps, Map, Placemark, FullscreenControl} from "react-yandex-maps";
 import "../../src/map.css";
+import {SimpleSlider} from "../components/Slider";
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
+import "../../src/slider.css";
+
+
 
 const CountryStyled = styled.div``;
 const RatingWrapperStyled = styled.div`
@@ -51,6 +57,28 @@ const RateStyled = styled.p`
 const apiKey = "5ae2e3f221c38a28845f05b6d03a8c16da44b986d76a13df718bebe0";
 
 export const CountryPage = (props) => {
+  const attractions = [
+    {
+      attraction:"Minaret",
+      img:'http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcQXNkmWQfOPlDQwAsxvElT0Nu4xpawANrTamMZLkuVMLwiY5v7w3KNAdamSC0bVYTHy_DAqNUrjsIyT_gJO4G8',
+      text: "В архитектуре ислама минаретом называют круглую, квадратную или многогранную башню в сечении, с которой призывают верующих муэдзины. Украшались минареты кирпичной узорной кладкой, глазурованной керамикой, резь",
+    },
+    {
+      attraction:"Minaret",
+      img:'http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcQXNkmWQfOPlDQwAsxvElT0Nu4xpawANrTamMZLkuVMLwiY5v7w3KNAdamSC0bVYTHy_DAqNUrjsIyT_gJO4G8',
+      text: "В архитектуре ислама минаретом называют круглую, квадратную или многогранную башню в сечении, с которой призывают верующих муэдзины. Украшались минареты кирпичной узорной кладкой, глазурованной керамикой, резь",
+    },
+    {
+      attraction:"Minaret",
+      img:'http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcQXNkmWQfOPlDQwAsxvElT0Nu4xpawANrTamMZLkuVMLwiY5v7w3KNAdamSC0bVYTHy_DAqNUrjsIyT_gJO4G8',
+      text: "В архитектуре ислама минаретом называют круглую, квадратную или многогранную башню в сечении, с которой призывают верующих муэдзины. Украшались минареты кирпичной узорной кладкой, глазурованной керамикой, резь",
+    },
+    {
+      attraction:"Minaret",
+      img:'http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcQXNkmWQfOPlDQwAsxvElT0Nu4xpawANrTamMZLkuVMLwiY5v7w3KNAdamSC0bVYTHy_DAqNUrjsIyT_gJO4G8',
+      text: "В архитектуре ислама минаретом называют круглую, квадратную или многогранную башню в сечении, с которой призывают верующих муэдзины. Украшались минареты кирпичной узорной кладкой, глазурованной керамикой, резь",
+    }
+  ]
   const { name, capital, code} = useParams();
   const [countryWeather, setCountryWeather] = useState({});
   const [countryRate, setCountryRate] = useState({});
@@ -131,6 +159,9 @@ export const CountryPage = (props) => {
           <RateStyled>{countryData.capital}</RateStyled>
         </WeatherWrapperStyled>
       </AddInfoWrapperStyled>
+      <H2 text="Достопримечательности"></H2>
+      <SimpleSlider attractions={attractions}></SimpleSlider>
+
       <H2 text="Расположение"></H2>
       <YMaps>
         <div className="map-conteiner">
