@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { changeLang } from '../store/langslice';
 import { langs } from '../const/langs';
 import { SelectLang } from './select';
+import { useDict } from '../hooks/useDict';
 
 export const Header = () => {
   const history = useHistory();
@@ -18,19 +19,21 @@ export const Header = () => {
     auth.logout();
     history.push();
   }
+
+  const getTranslation = useDict();
+
   return (
     <header className="header">
       <div className="logo">
         <img className="logo-img" src={images.logo} alt="logo" />
       </div>
-      <div className="search">search</div>
+      <div className="search">{getTranslation('search')}</div>
       <div className="language">
         <SelectLang />
       </div>
       <div className="authorization">
         <NavLink className="link" to={'/'} onClick={logoutHandler}>
-          Logout translate
-          {/* {lang.en.logIn} */}
+          {getTranslation('logIn')}
         </NavLink>
       </div>
     </header>
