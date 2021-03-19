@@ -32,10 +32,10 @@ export const CountryVideo = ({ country }) => {
       width="800"
       height="450"
       src={url}
-      frameborder="0"
+      frameBorder="0"
       allow="accelerometer; autoplay; clipboard-write;
       encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen="allowfullscreen"
+      allowFullScreen="allowfullscreen"
     ></iframe>
   );
 };
