@@ -15,7 +15,10 @@ export const SimpleSlider = ({ attractions }) => {
       slidesToScroll: 2
     }
     const listItems = attractions.map((item,index) =>
-      <Slide key={index} attraction={item.name} img={item.preview? item.preview.source: 'https://upload.wikimedia.org/wikipedia/ru/thumb/5/57/Ukraina.JPG/300px-Ukraina.JPG'} text={item.wikipedia_extracts.text}></Slide>
+      <Slide 
+      key={index} attraction={item.name} 
+      img={item.preview? item.preview.source: 'https://upload.wikimedia.org/wikipedia/ru/thumb/5/57/Ukraina.JPG/300px-Ukraina.JPG'} 
+      text={item.wikipedia_extracts? item.wikipedia_extracts.text? item.wikipedia_extracts.text: 'some text':"Within the study of social psychology, interpersonal attraction is related to how much one likes, dislikes, or hates someone. It can be viewed as a force acting between two people that tends to draw them together and to resist their separation"}></Slide>
     );
 
     return (
