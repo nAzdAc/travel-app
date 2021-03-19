@@ -78,7 +78,8 @@ code {
     padding: 0;
   }
 
-  .header {
+  .header,
+  .header_country {
     padding: 0 30px;
   }
 }
@@ -134,7 +135,7 @@ input.yellow-input:focus + label {
   display: flex;
 }
 
-/*!  RATING  !*/
+
 
 .rating-wrap {
   display: flex;
@@ -199,4 +200,11 @@ input.yellow-input:focus + label {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/*!  IFRAME  !*/
+
+.iframe-wrapper {
+  width: 100%;
+  min-height: 450px;
 }

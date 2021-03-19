@@ -22,19 +22,22 @@ export const CountryVideo = ({ country }) => {
 	);
 
 	if (url === null) {
-		return <div style={{ width: '800px', height: '450px', backgroundColor: 'gray' }} />;
+		return <div style={{ width: '100%', height: '450px', backgroundColor: 'gray' }} />;
 	}
 
 	return (
-		<iframe
-			title="Country video"
-			width="800"
-			height="450"
-			src={url}
-			frameBorder="0"
-			allow="accelerometer; autoplay; clipboard-write;
-      encrypted-media; gyroscope; picture-in-picture"
-			allowFullScreen="allowfullscreen"
-		/>
+    <div className="iframe-wrapper">
+      <iframe
+        title="Country video"
+        width="100%"
+        height="550px"
+        src={url}
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write;
+        encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen="allowfullscreen"
+      />
+    </div>
+		
 	);
 };
