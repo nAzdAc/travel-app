@@ -12,7 +12,8 @@ export const AuthPage = () => {
 
 	const [ form, setForm ] = useState({
 		email: '',
-		password: ''
+		password: '',
+		name: ''
 	});
 
 	useEffect(
@@ -33,17 +34,18 @@ export const AuthPage = () => {
 
 	async function registerHandler() {
 		try {
-			const data = await request(routes.register, 'POST', { ...form });
+			const data = await request('http://localhost:8080/register', 'POST', { ...form });
 			message(data.message);
+			console.log(data)
 		} catch (e) {}
 	}
 
 	async function loginHandler() {
 		try {
-			const data = await request(routes.login, 'POST', { ...form });
+			const data = await request('http://localhost:8080/login', 'POST', { ...form });
 			message(data.message);
-			auth.login(data.token, data.userId);
-      
+			console.log(data)
+			auth.login(data.token, data.userId, data.name);
 		} catch (e) {}
 	}
 
@@ -81,6 +83,19 @@ export const AuthPage = () => {
 									value={form.password}
 								/>
 								<label htmlFor="password">Password</label>
+							</div>
+
+							<div className="input-field">
+								<input
+									placeholder="Enter your Name"
+									id="name"
+									type="text"
+									name="name"
+									className="yellow-input"
+									onChange={changeHandler}
+									value={form.name}
+								/>
+								<label htmlFor="name">Name</label>
 							</div>
 						</div>
 					</div>

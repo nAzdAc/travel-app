@@ -56,14 +56,10 @@ export const CountryPage = (props) => {
 	const { token } = useContext(AuthContext);
 	const [ coordinate, setCoordinate ] = useState({ lat: 55.75, lon: 37.57 });
 
-	const countryData = data.find((c) => c.name === name);
-	const countryTitle = `${countryData.name}, ${countryData.capital}`;
-	const countryDescription = countryData.description;
-
 	const fetchWeather = useCallback(
 		async () => {
 			try {
-				const data = await request(`${routes.country}?country=${name}&capital=${capital}&currencyCode=${code}`, 'GET', null, {
+				const data = await request(`${local}?country=${name}&capital=${capital}&currencyCode=${code}`, 'GET', null, {
 					Authorization: `Bearer ${token}`
 				});
 				console.log(data)
@@ -115,9 +111,9 @@ export const CountryPage = (props) => {
 			<Rating />
 			<ImageLarge url={imageUrl} />
 			<RatingWrapperStyled>
-				<H1 text={countryTitle} />
+				<H1 text={name} />
 			</RatingWrapperStyled>
-			<TextMedium text={countryDescription} />
+			{/* <TextMedium text={countryDescription} /> */}
 			<AddInfoWrapperStyled>
 				<WeatherWrapperStyled>
 					<div>
@@ -134,7 +130,7 @@ export const CountryPage = (props) => {
 				<WeatherWrapperStyled>
 					<TextColor text={new Date().toLocaleTimeString()} />
 					<TextColor text={new Date().toLocaleDateString()} />
-					<RateStyled>{countryData.capital}</RateStyled>
+					<RateStyled>{capital}</RateStyled>
 				</WeatherWrapperStyled>
 			</AddInfoWrapperStyled>
 			<H2 text="Расположение" />
