@@ -1,14 +1,13 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React, { useState, useContext} from 'react';
 import { useHttp } from '../hooks/http.hook';
 import { routes } from '../utils/routes';
 import { AuthContext } from '../context/AuthContext';
 import { RatingList } from './RatingList';
 
 const ratingValues = [ 5, 4, 3, 2, 1 ];
-const attraction = 'belarus';
 
-export const Rating = () => {
-	const { loading, request } = useHttp();
+export const Rating = ({ attraction }) => {
+	const { request } = useHttp();
 	const [ ratings, setRatings ] = useState('');
 	const [ showUsersArr, setShowUsersArr ] = useState([]);
 	const { token, userName } = useContext(AuthContext);
@@ -16,7 +15,7 @@ export const Rating = () => {
 	const postRating = async (value) => {
 		try {
 			const data = await request(
-				'http://localhost:8080/post-rating',
+				routes.postRating,
 				'POST',
 				{ attraction, value, userName },
 				{
