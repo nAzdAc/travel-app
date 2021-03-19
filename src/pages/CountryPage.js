@@ -17,6 +17,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import '../../src/slider.css';
 import { CountryVideo } from '../components/video';
+import moment from 'moment';
 
 const CountryStyled = styled.div``;
 const RatingWrapperStyled = styled.div`display: flex;`;
@@ -44,6 +45,8 @@ const RateStyled = styled.p`
 	margin: 5px 0;
 `;
 
+let dateRegexp = /[+|-]\d\d:\d\d/;
+
 const apiKey = '5ae2e3f221c38a28845f05b6d03a8c16da44b986d76a13df718bebe0';
 
 export const CountryPage = (props) => {
@@ -52,12 +55,12 @@ export const CountryPage = (props) => {
 	const [ attractionsList, setAttractionsList ] = useState([]);
 	const [ countryRate, setCountryRate ] = useState({});
 	const [ imageUrl, setImageUrl ] = useState('');
+	const [timeZone, setTimeZone] = useState('UTC+03:00')
+	const [time, setTime] = useState(moment())
 	const { request } = useHttp();
 	const { token } = useContext(AuthContext);
 	const [ coordinate, setCoordinate ] = useState({ lat: 55.75, lon: 37.57 });
-
 	const countryTitle = `${name}, ${capital}`;
-
 	const fetchWeather = useCallback(
 		async () => {
 			try {
@@ -70,6 +73,7 @@ export const CountryPage = (props) => {
 					}
 				);
 				console.log(data);
+				setTimeZone(data.timeZone.match(dateRegexp)[0])
 				setImageUrl(data.imageUrl);
 				setCountryWeather(data.weather);
 				setCountryRate(data.currency);
@@ -122,6 +126,13 @@ export const CountryPage = (props) => {
 		[ fetchWeather ]
 	);
 
+
+	useEffect(() => {
+		setInterval(() => {
+			setTime(moment())
+		}, 1000)
+	}, [])
+
 	return (
 		<CountryStyled>
 			<HeaderCountry />
@@ -132,11 +143,13 @@ export const CountryPage = (props) => {
 			<CountryVideo country={name} />
 			<AddInfoWrapperStyled>
 				<WeatherWrapperStyled>
-					<div>
-						<img alt={countryWeather.altText} src={countryWeather.icon} />
+					<div className='weather-icon-wrap'>
+						<img alt={countryWeather.altText} src={countryWeather.weatherIconURL || 'http://openweathermap.org/img/w/03d.png'} />
 					</div>
 					<TextColor text={countryWeather.temperature} />
 					<TextColor text={countryWeather.wind} />
+					<TextColor text={countryWeather.pressure} />
+					<TextColor text={countryWeather.humidity} />
 				</WeatherWrapperStyled>
 				<WeatherWrapperStyled>
 					<RateStyled>{countryRate.BYN}</RateStyled>
@@ -144,8 +157,7 @@ export const CountryPage = (props) => {
 					<RateStyled>{countryRate.USD}</RateStyled>
 				</WeatherWrapperStyled>
 				<WeatherWrapperStyled>
-					<TextColor text={new Date().toLocaleTimeString()} />
-					<TextColor text={new Date().toLocaleDateString()} />
+					<TextColor text={time.utcOffset(`${timeZone}`).format('DD.MM.YYYY HH:mm:ss')} />
 				</WeatherWrapperStyled>
 			</AddInfoWrapperStyled>
 			<H2 text="Достопримечательности" />
