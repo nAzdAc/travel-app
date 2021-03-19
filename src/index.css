@@ -165,3 +165,10 @@ input.yellow-input:focus + label {
   left: 150px;
   z-index: 9999;
 }
+
+
+.weather-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
