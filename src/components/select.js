@@ -1,5 +1,5 @@
 import { langs } from '../const/langs';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { changeLang } from '../store/langslice';
 
 export const SelectLang = () => {
