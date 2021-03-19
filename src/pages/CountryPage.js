@@ -4,9 +4,7 @@ import { Footer } from '../components/Footer';
 import { HeaderCountry } from '../components/HeaderCountry';
 import { ImageLarge } from '../components/ImageLarge';
 import { H1 } from '../components/H1';
-// import { TextMedium } from "../components/TextMedium";
 import { TextColor } from '../components/TextColor';
-// import data from "../data";
 import { AuthContext } from '../context/AuthContext';
 import { useHttp } from '../hooks/http.hook';
 import { routes } from '../utils/routes';
@@ -18,7 +16,6 @@ import { SimpleSlider } from '../components/Slider';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import '../../src/slider.css';
-import { Rating } from '../components/Rating';
 import { CountryVideo } from '../components/video';
 
 const CountryStyled = styled.div``;
@@ -89,13 +86,13 @@ export const CountryPage = (props) => {
 				`radius=1000&limit=${3}&offset=${0}&lon=${coordinate.lon}&lat=${coordinate.lat}&rate=2&format=json`
 			);
 			const promisesArr = data.map((item) =>
-					apiGet('xid/' + item.xid).then((data) => {
-						attractionsId.push(data);
-					})
-				);
-				Promise.all(promisesArr).then(() => {
-					setAttractionsList(attractionsId);
-				});
+				apiGet('xid/' + item.xid).then((data) => {
+					attractionsId.push(data);
+				})
+			);
+			Promise.all(promisesArr).then(() => {
+				setAttractionsList(attractionsId);
+			});
 		},
 		[ coordinate.lon, coordinate.lat ]
 	);
@@ -132,10 +129,7 @@ export const CountryPage = (props) => {
 			<RatingWrapperStyled>
 				<H1 text={countryTitle} />
 			</RatingWrapperStyled>
-
-			{/* <TextMedium text={countryDescription} /> */}
 			<CountryVideo country={name} />
-
 			<AddInfoWrapperStyled>
 				<WeatherWrapperStyled>
 					<div>
@@ -152,12 +146,10 @@ export const CountryPage = (props) => {
 				<WeatherWrapperStyled>
 					<TextColor text={new Date().toLocaleTimeString()} />
 					<TextColor text={new Date().toLocaleDateString()} />
-					{/* <RateStyled>{countryData.capital}</RateStyled> */}
 				</WeatherWrapperStyled>
 			</AddInfoWrapperStyled>
 			<H2 text="Достопримечательности" />
 			<SimpleSlider attractions={attractionsList} />
-
 			<H2 text="Расположение" />
 			<YMaps>
 				<div className="map-conteiner">

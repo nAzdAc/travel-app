@@ -30,11 +30,7 @@ export const Footer = () => {
 			<p className="year">2021</p>
 			<div className="developers">
 				{gitAccounts.map((acc) => (
-					<a className="github"
-                    target="_blank"
-                    key={acc.url}
-                    rel="noopener noreferrer"
-                    href={acc.url}>
+					<a className="github" target="_blank" key={acc.url} rel="noopener noreferrer" href={acc.url}>
 						{acc.name}
 					</a>
 				))}
