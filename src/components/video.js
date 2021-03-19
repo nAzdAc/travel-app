@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 async function getId(country) {
   console.log({ country });
-  const apiKey = 'AIzaSyD5CgXghZNM-FAkGeub8IFvm0RqkLX9MRQ';
+  const apiKey = 'AIzaSyCF6cWGx7QTnDHBaRAuZjHqEm4i-Pr3OOM';
   const link = `https://www.googleapis.com/youtube/v3/search?maxResults=1&key=${apiKey}&type=video&q=${country}`;
   const url = link;
   const res = await fetch(url);

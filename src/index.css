@@ -1,6 +1,5 @@
-@import "./assets/fonts/fonts.css";
-@import "~materialize-css/dist/css/materialize.min.css";
-
+@import './assets/fonts/fonts.css';
+@import '~materialize-css/dist/css/materialize.min.css';
 
 * {
   box-sizing: border-box;
@@ -20,7 +19,6 @@ code {
     monospace;
 }
 
-
 /*!  APP  !*/
 
 .app {
@@ -28,7 +26,6 @@ code {
   display: flex;
   flex-direction: column;
 }
-
 
 /*!  HEADER  !*/
 
@@ -48,14 +45,16 @@ code {
   align-items: center;
 }
 
-
+.select {
+  display: inline-block !important;
+}
 
 /*!  FOOTER  !*/
 
 .footer {
   width: 100%;
   height: 100px;
-  background-color: #1A659E;
+  background-color: #1a659e;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -72,8 +71,6 @@ code {
   color: #ffffff;
 }
 
-
-
 /*!  AUTHORIZATION  !*/
 
 .form-container {
@@ -84,7 +81,6 @@ input.yellow-input {
   border-bottom: 1px solid #fff !important;
   box-shadow: 0 1px 0 0 #fff !important;
 }
-
 
 input.yellow-input:focus {
   border-bottom: 1px solid #ffeb3b !important;
@@ -99,23 +95,16 @@ input.yellow-input:focus + label {
   color: #fff !important;
 }
 
-
-
-
 /*!  CONTENT  !*/
 .main__country__info {
   display: flex;
   align-items: center;
-  margin:27px 0 42px 0;
+  margin: 27px 0 42px 0;
 }
 
 .flag__wrapper {
   display: flex;
 }
-
-
-
-
 
 /*!  RATING  !*/
 
@@ -133,7 +122,7 @@ input.yellow-input:focus + label {
   font-size: 50px;
   color: #dcdcdc;
   cursor: pointer;
-  transition: .2s;
+  transition: 0.2s;
 }
 
 .rating-item:hover {
@@ -144,11 +133,11 @@ input.yellow-input:focus + label {
   color: #989898;
 }
 
-.rating[value="1"] .rating-item:nth-child(n + 5),
-.rating[value="2"] .rating-item:nth-child(n + 4),
-.rating[value="3"] .rating-item:nth-child(n + 3),
-.rating[value="4"] .rating-item:nth-child(n + 2),
-.rating[value="5"] .rating-item:nth-child(n + 1) {
+.rating[value='1'] .rating-item:nth-child(n + 5),
+.rating[value='2'] .rating-item:nth-child(n + 4),
+.rating[value='3'] .rating-item:nth-child(n + 3),
+.rating[value='4'] .rating-item:nth-child(n + 2),
+.rating[value='5'] .rating-item:nth-child(n + 1) {
   color: orange;
 }
 
@@ -158,21 +147,21 @@ input.yellow-input:focus + label {
 }
 
 .all-users-ratings {
-  display:none;
-  margin-left:-350px;
+  display: none;
+  margin-left: -350px;
   padding: 5px;
-  margin-top:17px;
-  background:#f3f3f3;
-  -moz-box-shadow:0 5px 5px rgba(0,0,0,0.3);
-  -webkit-box-shadow:0 5px 5px rgba(0,0,0,0.3);
-  box-shadow:0 5px 5px rgba(0,0,0,0.3);
+  margin-top: 17px;
+  background: #f3f3f3;
+  -moz-box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
   font-size: 15px;
 }
 
 .total-value:hover .all-users-ratings {
-  display:block;
-  position:absolute;
-  top:50px;
+  display: block;
+  position: absolute;
+  top: 50px;
   left: 150px;
-  z-index:9999;
+  z-index: 9999;
 }
