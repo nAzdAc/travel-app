@@ -173,6 +173,6 @@ input.yellow-input:focus + label {
   display:block;
   position:absolute;
   top:50px;
-  left: 50px;
+  left: 150px;
   z-index:9999;
 }
