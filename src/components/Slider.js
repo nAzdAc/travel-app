@@ -6,7 +6,6 @@ import '../../src/slider.css';
 import { Rating } from '../components/Rating';
 
 export const SimpleSlider = ({ attractions }) => {
-	// console.log(attractions);
 	const settings = {
 		dots: true,
 		infinite: true,
@@ -15,8 +14,6 @@ export const SimpleSlider = ({ attractions }) => {
 		slidesToScroll: 2
 	};
 	const listItems = attractions.map((item, index) => {
-    // console.log(item)
-    // console.log(item.preview)
 		return (
 			<Slide
 				key={index}
