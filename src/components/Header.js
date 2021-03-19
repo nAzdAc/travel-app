@@ -16,6 +16,8 @@ import PropTypes from 'prop-types';
 import { SelectLang } from './select';
 import { useDict } from '../hooks/useDict';
 
+//const searchStyled = styled.
+
 const searchClient = algoliasearch(
   'YIT6C1K5J5',
   '93905f6f171e09927bb50b998b8141a5'

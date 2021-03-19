@@ -49,6 +49,8 @@ code {
   display: inline-block !important;
 }
 
+
+
 /*!  FOOTER  !*/
 
 .footer {
@@ -69,6 +71,33 @@ code {
   margin: 1rem;
   font-size: 16px;
   color: #ffffff;
+}
+
+@media (max-width: 1180px) {
+  .app {
+    padding: 0;
+  }
+
+  .header,
+  .header_country {
+    padding: 0 30px;
+  }
+}
+
+@media (max-width: 800px) {
+  .developers {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .github {
+    margin: 5px;
+    font-size: 14px;
+  }
+
+  .footer {
+    height: max-content;
+  }
 }
 
 /*!  AUTHORIZATION  !*/
@@ -106,7 +135,7 @@ input.yellow-input:focus + label {
   display: flex;
 }
 
-/*!  RATING  !*/
+
 
 .rating-wrap {
   display: flex;
@@ -171,4 +200,11 @@ input.yellow-input:focus + label {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/*!  IFRAME  !*/
+
+.iframe-wrapper {
+  width: 100%;
+  min-height: 450px;
 }
