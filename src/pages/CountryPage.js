@@ -14,7 +14,7 @@ import { useParams } from 'react-router-dom';
 import { H2 } from '../components/H2';
 import { YMaps, Map, Placemark, FullscreenControl } from 'react-yandex-maps';
 import '../../src/map.css';
-import { SimpleSlider } from '../components/Slider';
+import { SimpleSlider } from '../components/Slider'
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import '../../src/slider.css';
@@ -61,9 +61,7 @@ export const CountryPage = (props) => {
   const { token } = useContext(AuthContext);
   const [coordinate, setCoordinate] = useState({ lat: 55.75, lon: 37.57 });
 
-  // const countryData = data.find((c) => c.name === name);
   const countryTitle = `${name}, ${capital}`;
-  // const countryDescription = countryData.description;
 
   const fetchWeather = useCallback(async () => {
     try {

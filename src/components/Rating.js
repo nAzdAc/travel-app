@@ -1,45 +1,36 @@
-import React, { useCallback, useContext, useEffect} from 'react';
+import React, { useState, useContext} from 'react';
 import { useHttp } from '../hooks/http.hook';
 import { routes } from '../utils/routes';
 import { AuthContext } from '../context/AuthContext';
+import { RatingList } from './RatingList';
 
 const ratingValues = [ 5, 4, 3, 2, 1 ];
-// const attraction = 'sweden';
 
-export const Rating = ({attraction}) => {
+export const Rating = ({ attraction }) => {
 	const { request } = useHttp();
-	const ratings = 0;
-	const { token } = useContext(AuthContext);
-
-  const fetchRating = useCallback(
-		async () => {
-      console.log('fetchRating')
-			try {
-				const data = await request(`${routes.rating}?attraction=${attraction}`, 'GET', null, {
-					Authorization: `Bearer ${token}`
-				});
-        console.log(data);
-			} catch (e) {}
-		},
-		[ token, request, attraction ]
-	);
-  
-  useEffect(() => {
-    fetchRating()
-  }, [fetchRating])
+	const [ ratings, setRatings ] = useState('');
+	const [ showUsersArr, setShowUsersArr ] = useState([]);
+	const { token, userName } = useContext(AuthContext);
 
 	const postRating = async (value) => {
 		try {
 			const data = await request(
 				routes.postRating,
 				'POST',
-				{ attraction, value },
+				{ attraction, value, userName },
 				{
 					Authorization: `Bearer ${token}`
 				}
 			);
 			console.log(data);
-			// setRatings((prev) => prev = data.value)
+			setShowUsersArr((prev) => (prev = [ ...data ]));
+			const allRating = data.map((item) => item.value);
+			console.log(allRating);
+			const averageRating = allRating.reduce(function(sum, current) {
+				return (sum + current) / allRating.length;
+			});
+			console.log(averageRating);
+			setRatings((prev) => (prev = averageRating.toFixed()));
 		} catch (e) {}
 	};
 
@@ -54,8 +45,9 @@ export const Rating = ({attraction}) => {
 					);
 				})}
 			</div>
-			<div className="total-value" onClick={fetchRating}>
+			<div className="total-value">
 				{ratings}
+				<div className="all-users-ratings">{<RatingList arr={showUsersArr} />}</div>
 			</div>
 		</div>
 	);

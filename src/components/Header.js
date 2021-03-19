@@ -19,6 +19,7 @@ const searchClient = algoliasearch('YIT6C1K5J5', '93905f6f171e09927bb50b998b8141
 export const Header = () => {
 	const history = useHistory();
 	const auth = useContext(AuthContext);
+	console.log(auth)
 
 	function logoutHandler(event) {
 
@@ -58,6 +59,9 @@ export const Header = () => {
 					onClick={logoutHandler}>
 						Logout
 					</NavLink>
+					<div>
+						{auth.userName}
+					</div>
 				</div>
 			</header>
 			<div className="container"> 
