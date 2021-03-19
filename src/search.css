@@ -336,3 +336,9 @@ input[type=search]:not(.browser-default):focus:not([readonly]){
 .container {
   width: 100%;
 }
+
+@media (max-width: 760px) {
+  .ais-SearchBox-form {
+    max-width: 100px;
+  }
+}
