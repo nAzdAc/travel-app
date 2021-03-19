@@ -34,7 +34,7 @@ export const AuthPage = () => {
 
 	async function registerHandler() {
 		try {
-			const data = await request('http://localhost:8080/register', 'POST', { ...form });
+			const data = await request(routes.register, 'POST', { ...form });
 			message(data.message);
 			console.log(data)
 		} catch (e) {}
@@ -42,7 +42,7 @@ export const AuthPage = () => {
 
 	async function loginHandler() {
 		try {
-			const data = await request('http://localhost:8080/login', 'POST', { ...form });
+			const data = await request(routes.login, 'POST', { ...form });
 			message(data.message);
 			console.log(data)
 			auth.login(data.token, data.userId, data.name);

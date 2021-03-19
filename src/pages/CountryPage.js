@@ -14,7 +14,7 @@ import { useParams } from 'react-router-dom';
 import { H2 } from '../components/H2';
 import { YMaps, Map, Placemark, FullscreenControl } from 'react-yandex-maps';
 import '../../src/map.css';
-import { SimpleSlider } from '../components/Slider';
+import { SimpleSlider } from '../components/Slider'
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import '../../src/slider.css';
