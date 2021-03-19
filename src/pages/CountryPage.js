@@ -18,6 +18,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import '../../src/slider.css';
 import { CountryVideo } from '../components/video';
 import moment from 'moment';
+import { useDict } from '../hooks/useDict';
 
 const CountryStyled = styled.div``;
 const RatingWrapperStyled = styled.div`display: flex;`;
@@ -55,12 +56,14 @@ export const CountryPage = (props) => {
 	const [ attractionsList, setAttractionsList ] = useState([]);
 	const [ countryRate, setCountryRate ] = useState({});
 	const [ imageUrl, setImageUrl ] = useState('');
-	const [timeZone, setTimeZone] = useState('UTC+03:00')
-	const [time, setTime] = useState(moment())
+	const [ timeZone, setTimeZone ] = useState('UTC+03:00');
+	const [ time, setTime ] = useState(moment());
 	const { request } = useHttp();
 	const { token } = useContext(AuthContext);
 	const [ coordinate, setCoordinate ] = useState({ lat: 55.75, lon: 37.57 });
 	const countryTitle = `${name}, ${capital}`;
+	const getTranslation = useDict();
+
 	const fetchWeather = useCallback(
 		async () => {
 			try {
@@ -73,7 +76,7 @@ export const CountryPage = (props) => {
 					}
 				);
 				console.log(data);
-				setTimeZone(data.timeZone.match(dateRegexp)[0])
+				setTimeZone(data.timeZone.match(dateRegexp)[0]);
 				setImageUrl(data.imageUrl);
 				setCountryWeather(data.weather);
 				setCountryRate(data.currency);
@@ -126,12 +129,14 @@ export const CountryPage = (props) => {
 		[ fetchWeather ]
 	);
 
-
 	useEffect(() => {
 		setInterval(() => {
-			setTime(moment())
-		}, 1000)
-	}, [])
+			setTime(moment());
+		}, 1000);
+		return () => {
+			clearInterval();
+		};
+	}, []);
 
 	return (
 		<CountryStyled>
@@ -143,8 +148,11 @@ export const CountryPage = (props) => {
 			<CountryVideo country={name} />
 			<AddInfoWrapperStyled>
 				<WeatherWrapperStyled>
-					<div className='weather-icon-wrap'>
-						<img alt={countryWeather.altText} src={countryWeather.weatherIconURL || 'http://openweathermap.org/img/w/03d.png'} />
+					<div className="weather-icon-wrap">
+						<img
+							alt={countryWeather.altText}
+							src={countryWeather.weatherIconURL || 'http://openweathermap.org/img/w/03d.png'}
+						/>
 					</div>
 					<TextColor text={countryWeather.temperature} />
 					<TextColor text={countryWeather.wind} />
@@ -160,9 +168,9 @@ export const CountryPage = (props) => {
 					<TextColor text={time.utcOffset(`${timeZone}`).format('DD.MM.YYYY HH:mm:ss')} />
 				</WeatherWrapperStyled>
 			</AddInfoWrapperStyled>
-			<H2 text="Достопримечательности" />
+			<H2 text={getTranslation('attractions')} />
 			<SimpleSlider attractions={attractionsList} />
-			<H2 text="Расположение" />
+			<H2 text={getTranslation('location')} />
 			<YMaps>
 				<div className="map-conteiner">
 					<Map className="map" defaultState={{ center: [ coordinate.lat, coordinate.lon ], zoom: 9 }}>

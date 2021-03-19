@@ -1,19 +1,14 @@
 import React, { useState, useEffect } from 'react';
 
 async function getId(country) {
-	const apiKey = 'AIzaSyD5CgXghZNM-FAkGeub8IFvm0RqkLX9MRQ';
-	const link = `https://www.googleapis.com/youtube/v3/search?maxResults=1&key=${apiKey}&type=video&q=${country}`;
-	const url = link;
-	try {
-		const res = await fetch(url);
-    console.log(res)
-		const data = await res.json();
-		const id = data.items[0].id.videoId;
-    console.log(id)
-		return id;
-	} catch (e) {
-		console.log(e);
-	}
+  console.log({ country });
+  const apiKey = 'AIzaSyCF6cWGx7QTnDHBaRAuZjHqEm4i-Pr3OOM';
+  const link = `https://www.googleapis.com/youtube/v3/search?maxResults=1&key=${apiKey}&type=video&q=${country}`;
+  const url = link;
+  const res = await fetch(url);
+  const data = await res.json();
+  const id = data.items[0].id.videoId;
+  return id;
 }
 
 export const CountryVideo = ({ country }) => {
