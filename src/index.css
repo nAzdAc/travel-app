@@ -101,6 +101,22 @@ code {
 
 /*!  AUTHORIZATION  !*/
 
+.authorization {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.authorization p {
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  color: teal;
+  font-weight: 700;
+}
+
 .form-container {
   margin-top: 50px;
 }
@@ -206,19 +222,30 @@ input.yellow-input:focus + label {
   display: none;
 }
 
+.upload-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .upload {
-  border: 2px solid teal;
-  padding: 5px;
+  border: 2px dashed rgb(106, 163, 163);
+  padding: 3px;
   cursor: pointer;
-  margin: 5px;
+  margin: 3px;
+  margin-bottom: 15px;
+  color: teal;
+  font-weight: 700;
 }
 
 .avatar {
-  margin-left: 5px;
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
 }
+
 /*!  IFRAME  !*/
 
 .iframe-wrapper {

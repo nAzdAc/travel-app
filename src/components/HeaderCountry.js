@@ -27,18 +27,18 @@ export const HeaderCountry = () => {
 			<div className="language">
 				<SelectLang />
 			</div>
-			<div>
+			<div className="upload-wrapper">
 				<label htmlFor="file" className="upload">
 					Upload Avatar
 				</label>
 				<input type="file" id="file" accept="image/*" onChange={(event) => uploadAvatar(event.target.files[0])} />
-			</div>
-			<div>{userName}</div>
-			<img className="avatar" src={avatar} alt="logo" />
-			<div className="authorization">
 				<NavLink className="link" to={'/'} onClick={logoutHandler}>
 					{getTranslation('logOut')}
 				</NavLink>
+			</div>
+			<div className="authorization">
+				<img className="avatar" src={avatar} alt="logo" />
+				<p>{userName}</p>
 			</div>
 		</header>
 	);

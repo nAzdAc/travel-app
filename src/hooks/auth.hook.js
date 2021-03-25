@@ -7,16 +7,19 @@ export const useAuth = () => {
 	const [ token, setToken ] = useState(null);
 	const [ userId, setUserId ] = useState(null);
 	const [ userName, setUserName ] = useState(null);
-  const [avatar, setAvatar] = useState(null);
+	const [ avatar, setAvatar ] = useState(null);
 	const [ ready, setReady ] = useState(false);
 
 	const login = useCallback((jwtToken, id, name, avatarURL) => {
-    console.log(avatarURL)
+		console.log(avatarURL);
 		setToken(jwtToken);
 		setUserId(id);
 		setUserName(name);
-    setAvatar(avatarURL)
-		localStorage.setItem(storageName, JSON.stringify({ token: jwtToken, userId: id, userName: name, avatar: avatarURL }));
+		setAvatar(avatarURL);
+		localStorage.setItem(
+			storageName,
+			JSON.stringify({ token: jwtToken, userId: id, userName: name, avatar: avatarURL })
+		);
 	}, []);
 
 	const logout = useCallback(() => {
@@ -26,22 +29,25 @@ export const useAuth = () => {
 		localStorage.removeItem(storageName);
 	}, []);
 
-	const uploadAvatar = useCallback(async (file) => {
-		const formData = new FormData();
-		formData.append('avatar', file);
-    const res = await fetch(routes.upload, {
+	const uploadAvatar = useCallback(
+		async (file) => {
+			const formData = new FormData();
+			formData.append('avatar', file);
+			const res = await fetch(routes.upload, {
 				method: 'POST',
 				body: formData,
 				headers: {
 					Authorization: `Bearer ${token}`
 				}
 			});
-    const data = await res.json();
-    setAvatar(data.avatarURL)
-    const local = JSON.parse(localStorage.getItem(storageName))
-    const updateLocal = {...local, avatar: data.avatarURL}
-    localStorage.setItem(storageName, JSON.stringify(updateLocal))
-	}, [ token ]);
+			const data = await res.json();
+			setAvatar(data.avatarURL);
+			const local = JSON.parse(localStorage.getItem(storageName));
+			const updateLocal = { ...local, avatar: data.avatarURL };
+			localStorage.setItem(storageName, JSON.stringify(updateLocal));
+		},
+		[ token ]
+	);
 
 	useEffect(
 		() => {

@@ -3,20 +3,20 @@ import { useDispatch } from 'react-redux';
 import { changeLang } from '../store/langslice';
 
 export const SelectLang = () => {
-  const dispatch = useDispatch();
+	const dispatch = useDispatch();
 
-  const onChange = (e) => {
-    dispatch(changeLang(e.target.value));
-    console.log(e.target.value);
-  };
+	const onChange = (e) => {
+		dispatch(changeLang(e.target.value));
+		console.log(e.target.value);
+	};
 
-  return (
-    <select className="select" onChange={onChange}>
-      {Object.values(langs).map((lang) => (
-        <option key={lang} value={lang}>
-          {lang.toUpperCase()}
-        </option>
-      ))}
-    </select>
-  );
+	return (
+		<select className="select" onChange={onChange}>
+			{Object.values(langs).map((lang) => (
+				<option key={lang} value={lang}>
+					{lang.toUpperCase()}
+				</option>
+			))}
+		</select>
+	);
 };
