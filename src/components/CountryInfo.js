@@ -5,7 +5,6 @@ export const CountryInfo = ({ countryFlag, country, capital }) => (
 		<div className="flag__wrapper">
 			<img className="flag" src={countryFlag} alt={country} />
 		</div>
-		<H3 text={`${country}, ${capital}`}></H3>
+		<H3 text={`${country}, ${capital}`} />
 	</div>
 );
-

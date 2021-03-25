@@ -257,7 +257,9 @@ display: block;}
 .ais-SearchBox-form{
   display:flex;
   height: 40px;
-  width: 400px;
+  width: 60%;
+  min-width: 150px;
+  max-width: 400px;
 }
 input[type=search]:not(.browser-default){
   background-color: transparent;

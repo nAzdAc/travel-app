@@ -7,7 +7,7 @@ import { useRoutes } from './hooks/routes.hook';
 import 'materialize-css';
 
 function App() {
-	const { token, login, logout, userId, ready, userName } = useAuth();
+	const { token, login, logout, userId, ready, userName, avatar, uploadAvatar } = useAuth();
 	const isAuthenticated = !!token;
 	const routes = useRoutes(isAuthenticated);
 
@@ -23,7 +23,9 @@ function App() {
 				logout,
 				userId,
 				isAuthenticated,
-				userName
+				userName,
+				avatar,
+				uploadAvatar
 			}}
 		>
 			<BrowserRouter>
