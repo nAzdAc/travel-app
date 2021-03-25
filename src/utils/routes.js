@@ -7,5 +7,6 @@ export const routes = {
 	login: getRoute('login'),
 	rating: getRoute('all-rating'),
 	postRating: getRoute('post-rating'),
-	country: getRoute('country')
+	country: getRoute('country'),
+	upload: getRoute('upload')
 };

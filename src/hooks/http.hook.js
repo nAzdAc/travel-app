@@ -13,7 +13,7 @@ const [error, setError] = useState(null);
       }
       const res = await fetch(url, { method, body, headers })
       const data = await res.json()
-
+      
       if (!res.ok) {
         throw new Error(data.message || "Something wrong")
       }

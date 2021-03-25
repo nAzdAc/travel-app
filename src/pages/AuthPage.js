@@ -13,7 +13,7 @@ export const AuthPage = () => {
 	const [ form, setForm ] = useState({
 		email: '',
 		password: '',
-		name: ''
+		name: '',
 	});
 
 	useEffect(
@@ -45,7 +45,7 @@ export const AuthPage = () => {
 			const data = await request(routes.login, 'POST', { ...form });
 			message(data.message);
 			console.log(data)
-			auth.login(data.token, data.userId, data.name);
+			auth.login(data.token, data.userId, data.name, data.avatarURL);
 		} catch (e) {}
 	}
 
@@ -97,6 +97,7 @@ export const AuthPage = () => {
 								/>
 								<label htmlFor="name">Name</label>
 							</div>
+							
 						</div>
 					</div>
 					<div className="card-action">

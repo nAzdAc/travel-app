@@ -49,6 +49,13 @@ code {
   display: inline-block !important;
 }
 
+.authorization {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
 /*!  FOOTER  !*/
 
 .footer {
@@ -171,4 +178,23 @@ input.yellow-input:focus + label {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+
+#file {
+  display: none;
+}
+
+.upload {
+  border: 2px solid teal;
+  padding: 5px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.avatar {
+  margin-left: 5px;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
 }
