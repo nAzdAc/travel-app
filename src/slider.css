@@ -1,0 +1,32 @@
+.sliderItemConteiner{
+  display:flex !important;
+  justify-content:center;
+  align-items:center;
+  height:560px;
+  width:100%;
+  padding:20px;
+
+}
+.sliderItem{
+  display:flex !important;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  /* background:lightblue; */
+  height:100%;
+  width:100%;
+  padding:20px;
+}
+.sliderImg{
+  self-items: start;
+  width:100%;
+  height:250px;
+  object-fit:contain;
+  /* border:1px solid; */
+}
+.slick-prev:before, .slick-next:before {
+  color: black;
+}
+.sliderTitle{
+  margin-right:auto;
+}
